@@ -24,11 +24,18 @@ const SupportedBy = () => {
             <img src="/sponsor1.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor2.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor3.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor4.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor5.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor6.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+
 
             {/* Duplicate for seamless scroll */}
             <img src="/sponsor1.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor2.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor3.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor4.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor5.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor6.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
           </div>
 
         </div>
