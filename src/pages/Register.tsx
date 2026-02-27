@@ -36,8 +36,11 @@ export default function Register() {
     participationType === "Individual" ? 1 : teamCount;
 
   const feePerPerson = eventPrices[selectedEvent] || 0;
-  const totalAmount = participants * feePerPerson;
-
+const razorpayFeePercent = 2.36; // Adjust if needed
+const transactionFee =
+  totalAmount * (razorpayFeePercent / 100);
+const finalAmount = Math.ceil(totalAmount + transactionFee);
+  
   const handlePayment = (form: any) => {
     setPaymentError("");
 
@@ -48,7 +51,7 @@ export default function Register() {
 
     const options = {
       key: RAZORPAY_KEY,
-      amount: totalAmount * 100,
+amount: finalAmount * 100,
       currency: "INR",
       name: "SRUJANA 2026",
       description: selectedEvent,
@@ -295,10 +298,11 @@ export default function Register() {
           )}
 
           <div className="bg-primary/10 border border-primary/20 p-6 rounded-xl text-center shadow-md">
-  <p className="text-muted-foreground">Fee per person: ₹{feePerPerson}</p>
-  <p className="font-bold text-2xl text-primary mt-2">
-    Total: ₹{totalAmount}
-  </p>
+  <p>Base Amount: ₹{totalAmount}</p>
+<p>Payment Gateway Charges: ₹{(finalAmount - totalAmount).toFixed(2)}</p>
+<p className="font-bold text-2xl text-primary mt-2">
+  Payable Amount: ₹{finalAmount}
+</p>
 </div>
 
           {/* Agreement */}
