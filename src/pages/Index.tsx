@@ -7,6 +7,7 @@ import useScrollReveal from "@/hooks/useScrollReveal";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
+import SupportedBy from "@/components/SupportedBy";
 import { CalendarDays, MapPin } from "lucide-react";
 
 const Index = () => {
