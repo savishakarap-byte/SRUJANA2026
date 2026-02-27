@@ -77,11 +77,6 @@ SRUJANA is your stage to turn innovation into nation-building.
 
       {/* Supported By */}
       <SupportedBy />
-
-      {/* Events */}
-      <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
-        <EventsSection />
-      </section>
 {/* Academic Partner */}
 <section className="bg-background py-10 border-b border-border">
   <div className="container mx-auto px-4 md:px-6 text-center">
@@ -91,10 +86,15 @@ SRUJANA is your stage to turn innovation into nation-building.
     <img
       src="/bits-logo.png"
       alt="BITS Visakhapatnam"
-      className="h-20 mx-auto object-contain"
+      className="h-24 mx-auto object-contain"
     />
   </div>
 </section>
+      {/* Events */}
+      <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
+        <EventsSection />
+      </section>
+
       {/* Highlights */}
       <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
         <HighlightsSection />
