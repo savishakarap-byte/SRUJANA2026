@@ -1,39 +1,21 @@
-import React from "react";
-
-const logos = [
-  "/sponsor1.png",
-  "/sponsor2.png",
-  "/sponsor3.png",
-  "/sponsor4.png",
-  "/sponsor5.png",
-];
-
 const SupportedBy = () => {
   return (
-    <section className="py-16 bg-white overflow-hidden">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Supported By
-        </h2>
+    <div className="overflow-hidden bg-white py-10">
+      <h2 className="text-center text-2xl font-bold mb-6">
+        Supported By
+      </h2>
 
-        <div className="relative w-full overflow-hidden">
-          <div className="flex animate-scroll hover:[animation-play-state:paused]">
-            {[...logos, ...logos].map((logo, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center min-w-[200px] mx-8"
-              >
-                <img
-                  src={logo}
-                  alt="Sponsor"
-                  className="h-16 object-contain grayscale hover:grayscale-0 transition duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="flex animate-scroll whitespace-nowrap">
+        <img src="/sponsor1.png" className="h-16 mx-10" />
+        <img src="/sponsor2.png" className="h-16 mx-10" />
+        <img src="/sponsor3.png" className="h-16 mx-10" />
+
+        {/* duplicate for smooth scroll */}
+        <img src="/sponsor1.png" className="h-16 mx-10" />
+        <img src="/sponsor2.png" className="h-16 mx-10" />
+        <img src="/sponsor3.png" className="h-16 mx-10" />
       </div>
-    </section>
+    </div>
   );
 };
 
