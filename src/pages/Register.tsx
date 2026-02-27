@@ -4,7 +4,7 @@ import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby-9VQlEbstvMUnRogVxPeRhZj1qz8bOyWJSL0E30lvy6i3jWJd8Mn1rLUBL5fAVvgfOA/exec";
-const RAZORPAY_KEY = "rzp_live_SKqjeBnpm7GKTB";
+const RAZORPAY_KEY = "rzp_live_SLGfXBZCuhyTza";
 
 const eventOptions = [
   "Working model exhibition",
