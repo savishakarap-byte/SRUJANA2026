@@ -75,6 +75,9 @@ SRUJANA is your stage to turn innovation into nation-building.
         </div>
       </section>
 
+      {/* Supported By */}
+      <SupportedBy />
+
       {/* Events */}
       <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
         <EventsSection />
