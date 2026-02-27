@@ -1,21 +1,39 @@
 const SupportedBy = () => {
   return (
-    <div className="overflow-hidden bg-white py-10">
-      <h2 className="text-center text-2xl font-bold mb-6">
-        Supported By
-      </h2>
+    <section className="py-20 bg-background overflow-hidden border-t border-border">
+      <div className="container mx-auto px-4 md:px-6">
 
-      <div className="flex animate-scroll whitespace-nowrap">
-        <img src="/sponsor1.png" className="h-16 mx-10" />
-        <img src="/sponsor2.png" className="h-16 mx-10" />
-        <img src="/sponsor3.png" className="h-16 mx-10" />
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
+            Supported By
+          </h2>
+        </div>
 
-        {/* duplicate for smooth scroll */}
-        <img src="/sponsor1.png" className="h-16 mx-10" />
-        <img src="/sponsor2.png" className="h-16 mx-10" />
-        <img src="/sponsor3.png" className="h-16 mx-10" />
+        {/* Scrolling Logos Container */}
+        <div className="relative overflow-hidden bg-muted/30 rounded-xl py-8">
+
+          {/* Fade Left */}
+          <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-background to-transparent z-10" />
+
+          {/* Fade Right */}
+          <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-background to-transparent z-10" />
+
+          {/* Logos */}
+          <div className="flex animate-scroll whitespace-nowrap">
+            <img src="/sponsor1.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor2.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor3.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+
+            {/* Duplicate for seamless scroll */}
+            <img src="/sponsor1.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor2.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor3.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+          </div>
+
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
