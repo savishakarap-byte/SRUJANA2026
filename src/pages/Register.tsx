@@ -312,8 +312,6 @@ export default function Register() {
 
       <Footer />
 
-    <Footer />
-
 <style>{`
   .input-modern {
     width: 100%;
