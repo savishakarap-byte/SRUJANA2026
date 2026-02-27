@@ -44,8 +44,7 @@ const razorpayFeePercent = 2.36;
 const transactionFee =
   totalAmount * (razorpayFeePercent / 100);
 
-const finalAmount = Math.ceil(totalAmount + transactionFee);
-  
+const finalAmount = totalAmount + transactionFee;  
   const handlePayment = (form: any) => {
     setPaymentError("");
 
@@ -56,7 +55,7 @@ const finalAmount = Math.ceil(totalAmount + transactionFee);
 
     const options = {
       key: RAZORPAY_KEY,
-amount: finalAmount * 100,
+amount: Math.round(finalAmount * 100),
       currency: "INR",
       name: "SRUJANA 2026",
       description: selectedEvent,
