@@ -88,6 +88,9 @@ SRUJANA is your stage to turn innovation into nation-building.
       alt="BITS Visakhapatnam"
       className="h-24 mx-auto object-contain"
     />
+    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
+BITS Visakhapatnam
+    </p>
   </div>
 </section>
       {/* Events */}
