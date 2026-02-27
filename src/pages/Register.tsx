@@ -255,7 +255,7 @@ export default function Register() {
             </>
           )}
 
-          <div className="bg-green-50 p-4 rounded-xl text-center">
+          <div className="bg-indigo-50 border border-indigo-200 p-5 rounded-xl text-center shadow-sm">
             <p>Fee per person: ₹{feePerPerson}</p>
             <p className="font-bold text-lg">Total: ₹{totalAmount}</p>
           </div>
