@@ -4,7 +4,7 @@ const SupportedBy = () => {
       <div className="container mx-auto px-4 md:px-6">
 
         {/* Section Title */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
             Supported By
           </h2>
@@ -21,21 +21,21 @@ const SupportedBy = () => {
 
           {/* Logos */}
           <div className="flex animate-scroll whitespace-nowrap">
-            <img src="/sponsor1.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-            <img src="/sponsor2.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-            <img src="/sponsor3.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-             <img src="/sponsor4.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-             <img src="/sponsor5.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-             <img src="/sponsor6.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor1.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor2.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor3.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor4.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor5.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor6.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
 
 
             {/* Duplicate for seamless scroll */}
-            <img src="/sponsor1.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-            <img src="/sponsor2.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-            <img src="/sponsor3.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-             <img src="/sponsor4.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-             <img src="/sponsor5.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
-             <img src="/sponsor6.png" className="h-16 mx-12 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor1.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor2.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+            <img src="/sponsor3.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor4.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor5.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
+             <img src="/sponsor6.png" className="h-20 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
           </div>
 
         </div>
