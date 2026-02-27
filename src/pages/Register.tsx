@@ -109,10 +109,12 @@ export default function Register() {
 
     try {
       const res = await fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+  method: "POST",
+  body: JSON.stringify(payload),
+  headers: {
+    "Content-Type": "text/plain",
+  },
+});
 
       const data = await res.json();
 
