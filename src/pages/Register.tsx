@@ -312,14 +312,26 @@ export default function Register() {
 
       <Footer />
 
-      <style>{`
-        .input-modern {
-          width:100%;
-          padding:12px;
-          border:1px solid #cbd5e1;
-          border-radius:10px;
-        }
-      `}</style>
-    </div>
+     .input-modern {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #1e293b;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.input-modern::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.input-modern:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
   );
 }
