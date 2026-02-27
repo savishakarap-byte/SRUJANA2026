@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const SCRIPT_URL = "AKfycbwT7MhMypPAoEK0gwEmFwVrJU0BGszfVsonTn_7xzJwVUSAMTl18D09BRhg6srkPgex1g/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwT7MhMypPAoEK0gwEmFwVrJU0BGszfVsonTn_7xzJwVUSAMTl18D09BRhg6srkPgex1g/exec";
 const RAZORPAY_KEY = "rzp_live_SKqjeBnpm7GKTB";
 
 const eventOptions = [
@@ -15,9 +15,9 @@ const eventOptions = [
 ];
 
 const eventPrices: Record<string, number> = {
-  "Working model exhibition": 200,
-  "Paper presentation": 150,
-  "Poster presentation": 150,
+  "Working model exhibition": 2,
+  "Paper presentation": 1,
+  "Poster presentation": 1,
   "Hackathon": 250,
   "Industry institute interaction": 100,
 };
