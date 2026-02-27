@@ -111,7 +111,7 @@ export default {
         "fade-in": "fade-in 0.5s ease-out forwards",
 
         // ✅ Added scroll animation here
-        scroll: "scroll 25s linear infinite",
+        scroll: "scroll 15s linear infinite",
       },
     },
   },
