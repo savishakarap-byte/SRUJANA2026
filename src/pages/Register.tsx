@@ -178,8 +178,8 @@ export default function Register() {
         </div>
       )}
 
-      <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
-        <h2 className="text-3xl font-bold text-center mb-6">
+<div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-2xl border border-slate-200">  
+  <h2 className="text-3xl font-bold text-center mb-6">
           SRUJANA 2026 Registration
         </h2>
 
