@@ -36,9 +36,14 @@ export default function Register() {
     participationType === "Individual" ? 1 : teamCount;
 
   const feePerPerson = eventPrices[selectedEvent] || 0;
-const razorpayFeePercent = 2.36; // Adjust if needed
+
+const totalAmount = participants * feePerPerson;
+
+const razorpayFeePercent = 2.36;
+
 const transactionFee =
   totalAmount * (razorpayFeePercent / 100);
+
 const finalAmount = Math.ceil(totalAmount + transactionFee);
   
   const handlePayment = (form: any) => {
@@ -347,7 +352,7 @@ amount: finalAmount * 100,
                 : "bg-indigo-600 hover:bg-indigo-700"
             }`}
           >
-            {loading ? "Processing..." : `Pay ₹${totalAmount}`}
+            {loading ? "Processing..." : `Pay ₹${finalAmount}`}
           </button>
 
         </form>
