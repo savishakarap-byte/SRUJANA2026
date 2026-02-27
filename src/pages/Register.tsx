@@ -31,7 +31,7 @@ export default function Register() {
   const [registrationId, setRegistrationId] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [paymentError, setPaymentError] = useState("");
-
+  const [emailError, setEmailError] = useState("");
   const participants =
     participationType === "Individual" ? 1 : teamCount;
 
@@ -135,17 +135,41 @@ export default function Register() {
     setLoading(false);
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (e: any) => {
+  e.preventDefault();
 
-    if (!agreed) {
-      alert("Please accept Terms & Conditions.");
+  if (!agreed) {
+    alert("Please accept Terms & Conditions.");
+    return;
+  }
+
+  if (!selectedEvent) {
+    alert("Select event first");
+    return;
+  }
+
+  const form = e.currentTarget;
+  const email = form.email.value;
+
+  try {
+   const res = await fetch(
+  `${SCRIPT_URL}?email=${encodeURIComponent(email)}&eventType=${encodeURIComponent(selectedEvent)}`
+);
+
+    const data = await res.json();
+
+    if (data.status === "already_registered") {
+      setEmailError("This email is already registered for this event.");
       return;
     }
 
-    handlePayment(e.currentTarget);
-  };
+    setEmailError("");
+    handlePayment(form);
 
+  } catch {
+    alert("Unable to verify email. Try again.");
+  }
+};
   const retryPayment = (form: any) => {
     handlePayment(form);
   };
@@ -229,7 +253,20 @@ export default function Register() {
           )}
 
           <input name="fullName" required placeholder="Full Name" className="input-modern" />
-          <input name="email" type="email" required placeholder="Email" className="input-modern" />
+          <input
+  name="email"
+  type="email"
+  required
+  placeholder="Email"
+  className="input-modern"
+  onChange={() => setEmailError("")}
+/>
+
+{emailError && (
+  <div className="text-red-600 text-sm mt-1">
+    {emailError}
+  </div>
+)}
           <input name="mobile" required pattern="[0-9]{10}" placeholder="Mobile" className="input-modern" />
           <input name="college" required placeholder="College" className="input-modern" />
           <input name="department" required placeholder="Department" className="input-modern" />
