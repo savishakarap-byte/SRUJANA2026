@@ -19,9 +19,10 @@ const Index = () => {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <HeroSlider images={[hero1, hero2, hero3]} />
-         {/* Supported By */}
-      <SupportedBy />
+        
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+           {/* Supported By */}
+      <SupportedBy />
           <p className="text-accent text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-4 animate-fade-in">
             Innovation → Impact → Nation
           </p>
