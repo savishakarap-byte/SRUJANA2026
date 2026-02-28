@@ -19,6 +19,8 @@ const Index = () => {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <HeroSlider images={[hero1, hero2, hero3]} />
+         {/* Supported By */}
+      <SupportedBy />
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
           <p className="text-accent text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-4 animate-fade-in">
             Innovation → Impact → Nation
@@ -54,8 +56,7 @@ const Index = () => {
         </div>
       </section>
 
-        {/* Supported By */}
-      <SupportedBy />
+       
 
       {/* About */}
       <section id="about" className="section-fade-in container mx-auto px-4 md:px-6 py-20 md:py-28">
