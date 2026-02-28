@@ -36,6 +36,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
          <div className="flex items-center gap-3">
   {/* LEFT LOGOS */}
+   <img src="/logo3.png" className="h-10" />
   <img src="/logo1.png" className="h-10" />
   <img src="/logo2.png" className="h-10" />
 
