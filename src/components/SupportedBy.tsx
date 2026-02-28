@@ -38,7 +38,7 @@ const SupportedBy = () => {
     const animate = () => {
       if (!trackRef.current || !containerRef.current) return;
 
-      positionRef.current += 0.5; // smooth speed (adjust if needed)
+      positionRef.current += 0.8; // smooth speed (adjust if needed)
 
       const totalWidth =
         ITEMS.length * itemWidthRef.current;
