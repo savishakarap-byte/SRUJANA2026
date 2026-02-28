@@ -15,10 +15,9 @@ const Index = () => {
 
   return (
     <div ref={containerRef}>
-
   {/* ===== SUPPORTED STRIP (Below Navbar) ===== */}
-  <div className="relative z-20 border-y border-border bg-background/80 backdrop-blur-sm">
-    <div className="max-w-7xl mx-auto px-4 py-4">
+<div className="relative z-20 border-y border-border bg-transparent">  
+  <div className="max-w-7xl mx-auto px-1 py-1">
       <SupportedBy />
     </div>
   </div>
