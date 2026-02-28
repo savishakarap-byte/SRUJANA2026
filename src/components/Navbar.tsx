@@ -32,20 +32,31 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
-         <div className="flex items-center gap-3">
-  {/* LEFT LOGOS */}
-   <img src="/logo3.png" className="h-11" />
-            {/* Text Logo */}
-  <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight">
-    <span className="gradient-text">SRUJANA</span>
-    <span className="text-muted-foreground ml-1 text-sm font-normal">2026</span>
-  </Link>
-</div>
-  <img src="/logo1.png" className="h-10" />
-  <img src="/logo2.png" className="h-10" />
+    <div className="container mx-auto px-4 md:px-6">
+  <div className="flex items-center h-16 md:h-20">
+    
+    {/* LEFT SIDE - All Logos Equal */}
+    <div className="flex items-center gap-6">
+      
+      <img src="/logo3.png" className="h-10 w-auto object-contain" />
 
+      <Link 
+        to="/" 
+        className="font-heading text-xl md:text-2xl font-bold tracking-tight whitespace-nowrap"
+      >
+        <span className="gradient-text">SRUJANA</span>
+        <span className="text-muted-foreground ml-1 text-sm font-normal">
+          2026
+        </span>
+      </Link>
+
+      <img src="/logo1.png" className="h-10 w-auto object-contain" />
+      <img src="/logo2.png" className="h-10 w-auto object-contain" />
+
+    </div>
+
+  </div>
+</div>
  
 
           {/* Desktop Nav */}
