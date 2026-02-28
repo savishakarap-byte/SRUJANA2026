@@ -10,63 +10,77 @@ const SupportedBy = () => {
   useEffect(() => {
     let position = 0;
     let speed = 0.6;
+    let animationFrame: number;
 
     const animate = () => {
       if (!containerRef.current) return;
 
       position -= speed;
 
-      // Loop
-      if (Math.abs(position) >= containerRef.current.scrollWidth / 2) {
+      const totalWidth = containerRef.current.scrollWidth / 2;
+
+      if (Math.abs(position) >= totalWidth) {
         position = 0;
       }
 
       containerRef.current.style.transform = `translateX(${position}px)`;
 
       detectCenter();
-      requestAnimationFrame(animate);
+      animationFrame = requestAnimationFrame(animate);
     };
 
     const detectCenter = () => {
       if (!containerRef.current) return;
 
-      const center = window.innerWidth / 2;
+      const parentRect =
+        containerRef.current.parentElement?.getBoundingClientRect();
 
-      [sponsorRef, academicRef].forEach((ref) => {
-        if (!ref.current) return;
+      const center = parentRect
+        ? parentRect.left + parentRect.width / 2
+        : window.innerWidth / 2;
 
-        const rect = ref.current.getBoundingClientRect();
-        const elementCenter = rect.left + rect.width / 2;
+      const sponsorRect = sponsorRef.current?.getBoundingClientRect();
+      const academicRect = academicRef.current?.getBoundingClientRect();
 
-        if (Math.abs(center - elementCenter) < 120) {
-          if (ref === sponsorRef) {
-            setActive("sponsor");
-            speed = 0.3; // slow near center
-          } else {
-            setActive("academic");
-            speed = 0.3;
-          }
-        } else {
-          speed = 0.6;
-        }
-      });
+      if (!sponsorRect || !academicRect) return;
+
+      const sponsorCenter = sponsorRect.left + sponsorRect.width / 2;
+      const academicCenter = academicRect.left + academicRect.width / 2;
+
+      const sponsorDistance = Math.abs(center - sponsorCenter);
+      const academicDistance = Math.abs(center - academicCenter);
+
+      let newActive: "sponsor" | "academic";
+
+      if (sponsorDistance < academicDistance) {
+        newActive = "sponsor";
+        speed = sponsorDistance < 150 ? 0.3 : 0.6;
+      } else {
+        newActive = "academic";
+        speed = academicDistance < 150 ? 0.3 : 0.6;
+      }
+
+      setActive((prev) => (prev !== newActive ? newActive : prev));
     };
 
-    requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
   }, []);
 
   return (
     <section className="py-24 overflow-hidden border-t border-border">
       <div className="container mx-auto px-4 md:px-6">
 
-        {/* ===== DYNAMIC LABEL ===== */}
-        <div className="text-center mb-10 relative h-8">
+        {/* ===== LABEL WITH FADE + UNDERLINE ===== */}
+        <div className="text-center mb-10 relative h-10">
+
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${
               active === "sponsor" ? "opacity-100" : "opacity-0"
             }`}
           >
-            <span className="text-lg font-bold uppercase tracking-widest relative">
+            <span className="text-lg font-bold uppercase tracking-widest">
               Supported By
               <span className="block h-[2px] bg-foreground mt-1 animate-underline" />
             </span>
@@ -77,11 +91,12 @@ const SupportedBy = () => {
               active === "academic" ? "opacity-100" : "opacity-0"
             }`}
           >
-            <span className="text-lg font-bold uppercase tracking-widest relative">
+            <span className="text-lg font-bold uppercase tracking-widest">
               Academic Partner
               <span className="block h-[2px] bg-foreground mt-1 animate-underline" />
             </span>
           </div>
+
         </div>
 
         {/* ===== SCROLL STRIP ===== */}
@@ -98,12 +113,12 @@ const SupportedBy = () => {
                 active === "sponsor" ? "scale-110" : "scale-100"
               }`}
             >
-              <img src="/sponsor1.png" className="h-20" />
-              <img src="/sponsor2.png" className="h-20" />
-              <img src="/sponsor3.png" className="h-20" />
-              <img src="/sponsor4.png" className="h-20" />
-              <img src="/sponsor5.png" className="h-20" />
-              <img src="/sponsor6.png" className="h-20" />
+              <img src="/sponsor1.png" className="h-20 object-contain" />
+              <img src="/sponsor2.png" className="h-20 object-contain" />
+              <img src="/sponsor3.png" className="h-20 object-contain" />
+              <img src="/sponsor4.png" className="h-20 object-contain" />
+              <img src="/sponsor5.png" className="h-20 object-contain" />
+              <img src="/sponsor6.png" className="h-20 object-contain" />
             </div>
 
             {/* Academic */}
@@ -113,21 +128,29 @@ const SupportedBy = () => {
                 active === "academic" ? "scale-110" : "scale-100"
               }`}
             >
-              <img src="/bits-logo.png" className="h-20" />
+              <img
+                src="/bits-logo.png"
+                alt="BITS Visakhapatnam"
+                className="h-20 object-contain"
+              />
             </div>
 
-            {/* Duplicate for seamless */}
+            {/* Duplicate for seamless scroll */}
             <div className="flex items-center mx-40 space-x-8">
-              <img src="/sponsor1.png" className="h-20" />
-              <img src="/sponsor2.png" className="h-20" />
-              <img src="/sponsor3.png" className="h-20" />
-              <img src="/sponsor4.png" className="h-20" />
-              <img src="/sponsor5.png" className="h-20" />
-              <img src="/sponsor6.png" className="h-20" />
+              <img src="/sponsor1.png" className="h-20 object-contain" />
+              <img src="/sponsor2.png" className="h-20 object-contain" />
+              <img src="/sponsor3.png" className="h-20 object-contain" />
+              <img src="/sponsor4.png" className="h-20 object-contain" />
+              <img src="/sponsor5.png" className="h-20 object-contain" />
+              <img src="/sponsor6.png" className="h-20 object-contain" />
             </div>
 
             <div className="flex items-center mx-40">
-              <img src="/bits-logo.png" className="h-20" />
+              <img
+                src="/bits-logo.png"
+                alt="BITS Visakhapatnam"
+                className="h-20 object-contain"
+              />
             </div>
 
           </div>
