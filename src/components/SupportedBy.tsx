@@ -16,12 +16,9 @@ const SupportedBy = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const itemWidthRef = useRef(280);
+  const positionRef = useRef(0);
 
-  const currentRef = useRef(0);
-  const pauseRef = useRef(false);
-  const pauseTimer = useRef<NodeJS.Timeout | null>(null);
-
-  /* -------- Responsive Width -------- */
+  /* ---------- Responsive Width ---------- */
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) itemWidthRef.current = 200;
@@ -34,64 +31,49 @@ const SupportedBy = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  /* -------- Animation Loop -------- */
+  /* ---------- Smooth Infinite Animation ---------- */
   useEffect(() => {
     let frame: number;
 
     const animate = () => {
       if (!trackRef.current || !containerRef.current) return;
 
-      if (!pauseRef.current) {
-        currentRef.current += 0.006; // smooth speed
+      positionRef.current += 0.5; // smooth speed (adjust if needed)
 
-        if (currentRef.current >= ITEMS.length) {
-          currentRef.current = 0;
-        }
-      }
+      const totalWidth =
+        ITEMS.length * itemWidthRef.current;
 
-      const index = Math.round(currentRef.current) % ITEMS.length;
-
-      if (index !== activeIndex) {
-        setActiveIndex(index);
-      }
-
-      // Pause exactly when aligned
-      if (
-        !pauseRef.current &&
-        Math.abs(currentRef.current - index) < 0.002
-      ) {
-        pauseRef.current = true;
-
-        pauseTimer.current = setTimeout(() => {
-          pauseRef.current = false;
-        }, 1200);
+      if (positionRef.current >= totalWidth) {
+        positionRef.current = 0;
       }
 
       const containerWidth = containerRef.current.offsetWidth;
       const centerOffset =
         containerWidth / 2 - itemWidthRef.current / 2;
 
-      const offset =
-        currentRef.current * itemWidthRef.current - centerOffset;
+      trackRef.current.style.transform = `translateX(${
+        -positionRef.current + centerOffset
+      }px)`;
 
-      trackRef.current.style.transform = `translateX(${-offset}px)`;
+      const index = Math.floor(
+        positionRef.current / itemWidthRef.current
+      ) % ITEMS.length;
+
+      setActiveIndex(index);
 
       frame = requestAnimationFrame(animate);
     };
 
     frame = requestAnimationFrame(animate);
 
-    return () => {
-      cancelAnimationFrame(frame);
-      if (pauseTimer.current) clearTimeout(pauseTimer.current);
-    };
-  }, [activeIndex]);
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <section className="py-20 md:py-24 overflow-hidden">
       <div className="container mx-auto px-4">
 
-        {/* -------- Dynamic Label -------- */}
+        {/* ----- Dynamic Label ----- */}
         <div className="text-center mb-10 h-10">
           <span className="text-lg font-bold uppercase tracking-widest">
             {ITEMS[activeIndex].label}
@@ -99,18 +81,21 @@ const SupportedBy = () => {
           </span>
         </div>
 
-        {/* -------- Carousel -------- */}
+        {/* ----- Carousel ----- */}
         <div
           ref={containerRef}
           className="relative overflow-hidden perspective-1000"
         >
           <div
             ref={trackRef}
-            className="flex items-center transition-transform duration-700 ease-out"
-            style={{ width: `${ITEMS.length * 300}px` }}
+            className="flex items-center"
+            style={{
+              width: `${ITEMS.length * itemWidthRef.current * 2}px`,
+            }}
           >
-            {ITEMS.map((item, i) => {
-              const isActive = i === activeIndex;
+            {[...ITEMS, ...ITEMS].map((item, i) => {
+              const realIndex = i % ITEMS.length;
+              const isActive = realIndex === activeIndex;
 
               return (
                 <div
@@ -119,7 +104,7 @@ const SupportedBy = () => {
                   className="flex justify-center items-center"
                 >
                   <div
-                    className={`relative transition-all duration-700 ${
+                    className={`relative transition-all duration-500 ${
                       isActive
                         ? "scale-110 z-20"
                         : "scale-90 opacity-40"
@@ -127,13 +112,11 @@ const SupportedBy = () => {
                     style={{
                       transform: isActive
                         ? "rotateY(0deg)"
-                        : i < activeIndex
-                        ? "rotateY(20deg)"
-                        : "rotateY(-20deg)",
+                        : "rotateY(15deg)",
                     }}
                   >
                     {isActive && (
-                      <div className="absolute inset-0 rounded-full bg-white/30 blur-2xl scale-150 -z-10" />
+                      <div className="absolute inset-0 rounded-full bg-white/20 blur-2xl scale-150 -z-10" />
                     )}
 
                     <img
