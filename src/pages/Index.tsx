@@ -19,21 +19,35 @@ const Index = () => {
       {/* Hero */}
      <section className="relative min-h-screen overflow-hidden">
 
+  {/* Background */}
   <HeroSlider images={[hero1, hero2, hero3]} />
 
-  {/* Supported By — Positioned Below Navbar */}
-  <div className="relative z-20 pt-24 md:pt-28">
-    <SupportedBy />
+  {/* ===== SUPPORTED BY STRIP ===== */}
+  <div className="relative z-20 w-full pt-24 md:pt-28">
+    <div className="max-w-7xl mx-auto px-4">
+
+      {/* Small label strip (top red box in screenshot) */}
+      <div className="text-center text-sm uppercase tracking-widest text-muted-foreground mb-6">
+        Supported by
+      </div>
+
+      {/* Logo strip (second red box in screenshot) */}
+      <div className="border-t border-border pt-6">
+        <SupportedBy />
+      </div>
+
+    </div>
   </div>
 
-  {/* Hero Content */}
-  <div className="relative z-10 flex items-center justify-center min-h-screen text-center px-4 max-w-3xl mx-auto">
+  {/* ===== HERO MAIN CONTENT ===== */}
+  <div className="relative z-10 flex items-center justify-center min-h-[70vh] text-center px-4 max-w-4xl mx-auto">
+
     <div>
-      <p className="text-accent text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-4 animate-fade-in">
+      <p className="text-accent text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-4">
         Innovation → Impact → Nation
       </p>
 
-      <h1 className="font-heading text-5xl sm:text-6xl md:text-8xl font-bold mb-4 glow-text-orange animate-fade-up text-foreground">
+      <h1 className="font-heading text-5xl sm:text-6xl md:text-8xl font-bold mb-4 glow-text-orange text-foreground">
         SRUJANA <span className="gradient-text">2026</span>
       </h1>
 
@@ -65,10 +79,9 @@ const Index = () => {
         </a>
       </div>
     </div>
+
   </div>
-
 </section>
-
        
 
       {/* About */}
