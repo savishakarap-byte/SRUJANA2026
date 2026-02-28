@@ -103,7 +103,14 @@ export default {
           "100%": { transform: "translateX(-50%)" },
         },
       },
+@keyframes underline {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
 
+.animate-underline {
+  animation: underline 0.6s ease forwards;
+}
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
