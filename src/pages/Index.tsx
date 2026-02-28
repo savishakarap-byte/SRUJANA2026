@@ -67,57 +67,7 @@ const Index = () => {
   </section>
 
 </div>
-      {/* Hero */}
-     <section className="pt-2 overflow-hidden">
-
-  {/* Background */}
-  <HeroSlider images={[hero1, hero2, hero3]} />
-
-  
-
-  {/* ===== HERO MAIN CONTENT ===== */}
-  <div className="relative z-10 flex items-center justify-center min-h-[70vh] text-center px-4 max-w-4xl mx-auto">
-
-    <div>
-      <p className="text-accent text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-4">
-        Innovation → Impact → Nation
-      </p>
-
-      <h1 className="font-heading text-5xl sm:text-6xl md:text-8xl font-bold mb-4 glow-text-orange text-foreground">
-        SRUJANA <span className="gradient-text">2026</span>
-      </h1>
-
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-muted-foreground text-sm md:text-base mb-8">
-        <span className="flex items-center gap-1.5">
-          <CalendarDays size={16} className="text-primary" />
-          3rd – 5th April 2026
-        </span>
-        <span className="hidden sm:block text-border">|</span>
-        <span className="flex items-center gap-1.5">
-          <MapPin size={16} className="text-primary" />
-          BITS, Visakhapatnam
-        </span>
-      </div>
-
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Link
-          to="/register"
-          className="px-8 py-3 rounded-lg font-semibold bg-primary text-primary-foreground glow-button text-base"
-        >
-          Register Now
-        </Link>
-
-        <a
-          href="#about"
-          className="px-8 py-3 rounded-lg font-semibold border border-border text-foreground hover:bg-secondary transition-colors duration-200 text-base"
-        >
-          Learn More
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
+     
        
 
       {/* About */}
