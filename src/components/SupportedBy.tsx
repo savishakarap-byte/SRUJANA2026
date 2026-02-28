@@ -40,7 +40,7 @@ const SupportedBy = () => {
     const animate = () => {
       if (!trackRef.current) return;
 
-      current += 0.015; // speed
+      current += 0.004; // speed
       const total = ITEMS.length;
 
       if (current >= total) current = 0;
