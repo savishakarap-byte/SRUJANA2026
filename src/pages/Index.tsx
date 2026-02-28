@@ -15,17 +15,17 @@ const Index = () => {
 
   return (
     <div ref={containerRef}>
-
+  {/* ===== SUPPORTED STRIP (Below Navbar) ===== */}
+<div className="relative z-20 border-y border-border bg-transparent">  
+  <div className="max-w-10xl mx-auto px-1 py-1">
+      <SupportedBy />
+    </div>
+  </div>
 
   {/* ===== HERO SECTION ===== */}
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
     <HeroSlider images={[hero1, hero2, hero3]} />
-  {/* ===== SUPPORTED STRIP (Below Navbar) ===== */}
-<div className="relative z-20 border-y border-border bg-transparent">  
-  <div className="max-w-8xl mx-auto px-1 py-1">
-      <SupportedBy />
-    </div>
-  </div>
+
     <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
       <p className="text-accent text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-4">
         Innovation → Impact → Nation
