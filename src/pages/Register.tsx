@@ -18,8 +18,8 @@ const eventPrices: Record<string, number> = {
   "Working model exhibition": 2,
   "Paper presentation": 1,
   "Poster presentation": 1,
-  "Hackathon": 250,
-  "Industry institute interaction": 100,
+  "Hackathon": 1,
+  "Industry institute interaction": 1,
 };
 
 export default function Register() {
