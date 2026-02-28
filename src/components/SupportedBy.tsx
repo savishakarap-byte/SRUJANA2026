@@ -1,50 +1,103 @@
 import { useEffect, useRef, useState } from "react";
 
 const SupportedBy = () => {
-  const sponsorRef = useRef(null);
-  const academicRef = useRef(null);
-  const [activeLabel, setActiveLabel] = useState("Supported By");
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sponsorRef = useRef<HTMLDivElement>(null);
+  const academicRef = useRef<HTMLDivElement>(null);
+
+  const [active, setActive] = useState<"sponsor" | "academic">("sponsor");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (entry.target === academicRef.current) {
-              setActiveLabel("Academic Partner");
-            } else {
-              setActiveLabel("Supported By");
-            }
+    let position = 0;
+    let speed = 0.6;
+
+    const animate = () => {
+      if (!containerRef.current) return;
+
+      position -= speed;
+
+      // Loop
+      if (Math.abs(position) >= containerRef.current.scrollWidth / 2) {
+        position = 0;
+      }
+
+      containerRef.current.style.transform = `translateX(${position}px)`;
+
+      detectCenter();
+      requestAnimationFrame(animate);
+    };
+
+    const detectCenter = () => {
+      if (!containerRef.current) return;
+
+      const center = window.innerWidth / 2;
+
+      [sponsorRef, academicRef].forEach((ref) => {
+        if (!ref.current) return;
+
+        const rect = ref.current.getBoundingClientRect();
+        const elementCenter = rect.left + rect.width / 2;
+
+        if (Math.abs(center - elementCenter) < 120) {
+          if (ref === sponsorRef) {
+            setActive("sponsor");
+            speed = 0.3; // slow near center
+          } else {
+            setActive("academic");
+            speed = 0.3;
           }
-        });
-      },
-      { threshold: 0.6 }
-    );
+        } else {
+          speed = 0.6;
+        }
+      });
+    };
 
-    if (sponsorRef.current) observer.observe(sponsorRef.current);
-    if (academicRef.current) observer.observe(academicRef.current);
-
-    return () => observer.disconnect();
+    requestAnimationFrame(animate);
   }, []);
 
   return (
     <section className="py-24 overflow-hidden border-t border-border">
       <div className="container mx-auto px-4 md:px-6">
 
-        {/* Dynamic Top Label */}
-        <div className="text-center mb-6">
-          <h2 className="text-lg font-bold uppercase tracking-widest transition-all duration-500">
-            {activeLabel}
-          </h2>
+        {/* ===== DYNAMIC LABEL ===== */}
+        <div className="text-center mb-10 relative h-8">
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${
+              active === "sponsor" ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <span className="text-lg font-bold uppercase tracking-widest relative">
+              Supported By
+              <span className="block h-[2px] bg-foreground mt-1 animate-underline" />
+            </span>
+          </div>
+
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${
+              active === "academic" ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <span className="text-lg font-bold uppercase tracking-widest relative">
+              Academic Partner
+              <span className="block h-[2px] bg-foreground mt-1 animate-underline" />
+            </span>
+          </div>
         </div>
 
-        {/* Scroll Container */}
+        {/* ===== SCROLL STRIP ===== */}
         <div className="relative overflow-hidden">
+          <div
+            ref={containerRef}
+            className="flex items-center whitespace-nowrap will-change-transform"
+          >
 
-          <div className="flex items-center animate-scroll whitespace-nowrap">
-
-            {/* Sponsor Block */}
-            <div ref={sponsorRef} className="flex items-center mx-32 space-x-8">
+            {/* Sponsors */}
+            <div
+              ref={sponsorRef}
+              className={`flex items-center mx-40 space-x-8 transition-transform duration-500 ${
+                active === "sponsor" ? "scale-110" : "scale-100"
+              }`}
+            >
               <img src="/sponsor1.png" className="h-20" />
               <img src="/sponsor2.png" className="h-20" />
               <img src="/sponsor3.png" className="h-20" />
@@ -53,13 +106,18 @@ const SupportedBy = () => {
               <img src="/sponsor6.png" className="h-20" />
             </div>
 
-            {/* Academic Block */}
-            <div ref={academicRef} className="flex items-center mx-32">
+            {/* Academic */}
+            <div
+              ref={academicRef}
+              className={`flex items-center mx-40 transition-transform duration-500 ${
+                active === "academic" ? "scale-110" : "scale-100"
+              }`}
+            >
               <img src="/bits-logo.png" className="h-20" />
             </div>
 
-            {/* Duplicate */}
-            <div className="flex items-center mx-32 space-x-8">
+            {/* Duplicate for seamless */}
+            <div className="flex items-center mx-40 space-x-8">
               <img src="/sponsor1.png" className="h-20" />
               <img src="/sponsor2.png" className="h-20" />
               <img src="/sponsor3.png" className="h-20" />
@@ -68,7 +126,7 @@ const SupportedBy = () => {
               <img src="/sponsor6.png" className="h-20" />
             </div>
 
-            <div className="flex items-center mx-32">
+            <div className="flex items-center mx-40">
               <img src="/bits-logo.png" className="h-20" />
             </div>
 
