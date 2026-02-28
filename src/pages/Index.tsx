@@ -26,11 +26,6 @@ const Index = () => {
   <div className="relative z-20 w-full pt-24 md:pt-28">
     <div className="max-w-7xl mx-auto px-4">
 
-      {/* Small label strip (top red box in screenshot) */}
-      <div className="text-center text-sm uppercase tracking-widest text-muted-foreground mb-6">
-        Supported by
-      </div>
-
       {/* Logo strip (second red box in screenshot) */}
       <div className="border-t border-border pt-6">
         <SupportedBy />
