@@ -4,10 +4,7 @@ const ITEMS = [
   { label: "Supported By", src: "/sponsor1.png" },
   { label: "Supported By", src: "/sponsor2.png" },
   { label: "Supported By", src: "/sponsor3.png" },
-  { label: "Supported By", src: "/sponsor4.png" },
-  { label: "Supported By", src: "/sponsor5.png" },
-  { label: "Supported By", src: "/sponsor6.png" },
-  { label: "Academic Partner", src: "/bits-logo.png" },
+  { label: "Institutional Partner", src: "/bits-logo.png" },
 ];
 
 const SupportedBy = () => {
