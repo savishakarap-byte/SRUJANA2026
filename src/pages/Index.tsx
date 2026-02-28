@@ -15,14 +15,7 @@ const Index = () => {
 
   return (
     <div ref={containerRef}>
-     
-      {/* Hero */}
-     <section className="pt-2 overflow-hidden">
-
-  {/* Background */}
-  <HeroSlider images={[hero1, hero2, hero3]} />
-
-  {/* ===== SUPPORTED BY STRIP ===== */}
+     {/* ===== SUPPORTED BY STRIP ===== */}
   <div className="relative z-20 w-full pt-24 md:pt-28">
     <div className="max-w-7xl mx-auto px-4">
 
@@ -33,6 +26,13 @@ const Index = () => {
 
     </div>
   </div>
+      {/* Hero */}
+     <section className="pt-2 overflow-hidden">
+
+  {/* Background */}
+  <HeroSlider images={[hero1, hero2, hero3]} />
+
+  
 
   {/* ===== HERO MAIN CONTENT ===== */}
   <div className="relative z-10 flex items-center justify-center min-h-[70vh] text-center px-4 max-w-4xl mx-auto">
