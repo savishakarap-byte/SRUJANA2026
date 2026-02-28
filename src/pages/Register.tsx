@@ -301,19 +301,6 @@ amount: Math.round(finalAmount * 100),
             </>
           )}
 
-<div className="bg-gradient-to-r from-indigo-100 to-blue-100 border border-indigo-400 p-6 rounded-xl text-center shadow-md">
-  <p className="text-gray-800">
-    Base Amount: ₹{totalAmount}
-  </p>
-
-  <p className="text-gray-800 mt-1">
-    Gateway Charges: ₹{(finalAmount - totalAmount).toFixed(2)}
-  </p>
-
-  <p className="font-bold text-2xl text-indigo-800 mt-3">
-    Pay ₹{finalAmount}
-  </p>
-</div>
 
           {/* Agreement */}
           <div className="flex items-start gap-2 text-sm mt-3">
