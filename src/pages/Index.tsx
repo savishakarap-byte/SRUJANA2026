@@ -22,15 +22,13 @@ const Index = () => {
   <HeroSlider images={[hero1, hero2, hero3]} />
 
   {/* ===== SUPPORTED STRIP (Overlay, Transparent) ===== */}
-  <div className="absolute top-0 left-0 w-full z-20 bg-transparent backdrop-blur-sm">
-    <div className="max-w-7xl mx-auto px-4 py-3">
+  <div className="absolute top-0 left-0 w-full z-20">
       <SupportedBy />
     </div>
-  </div>
 
   {/* ===== HERO CONTENT ===== */}
   <div className="relative z-10 flex items-center justify-center h-full px-4">
-    <div className="text-center max-w-3xl mx-auto mt-20">
+    <div className="text-center max-w-3xl mx-auto mt-16">
 
       <p className="text-accent text-sm md:text-base font-semibold uppercase tracking-[0.3em] mb-4">
         Innovation → Impact → Nation
