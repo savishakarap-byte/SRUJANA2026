@@ -130,7 +130,6 @@ const SupportedBy = () => {
             >
               <img
                 src="/bits-logo.png"
-                alt="BITS Visakhapatnam"
                 className="h-20 object-contain"
               />
             </div>
@@ -148,7 +147,6 @@ const SupportedBy = () => {
             <div className="flex items-center mx-40">
               <img
                 src="/bits-logo.png"
-                alt="BITS Visakhapatnam"
                 className="h-20 object-contain"
               />
             </div>
