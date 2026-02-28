@@ -20,7 +20,21 @@ const SupportedBy = () => {
           <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-background to-transparent z-10" />
 
           {/* Logos */}
-          <div className="flex animate-scroll whitespace-nowrap">
+          <div className="flex animate-scroll whitespace-nowrap
+            {/* Academic Partner */}
+    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
+      Academic Partner
+    </p>
+    <img
+      src="/bits-logo.png"
+      alt="BITS Visakhapatnam"
+      className="h-24 mx-auto object-contain"
+    />
+    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
+BITS Visakhapatnam
+    </p>
+  </div>
+</section>
             <img src="/sponsor1.png" className="h-24 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor2.png" className="h-24 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor3.png" className="h-24 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
@@ -30,6 +44,20 @@ const SupportedBy = () => {
 
 
             {/* Duplicate for seamless scroll */}
+   {/* Academic Partner */}
+    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
+      Academic Partner
+    </p>
+    <img
+      src="/bits-logo.png"
+      alt="BITS Visakhapatnam"
+      className="h-24 mx-auto object-contain"
+    />
+    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
+BITS Visakhapatnam
+    </p>
+  </div>
+</section>
             <img src="/sponsor1.png" className="h-24 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor2.png" className="h-24 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
             <img src="/sponsor3.png" className="h-24 mx-16 opacity-80 hover:opacity-100 transition duration-300" />
