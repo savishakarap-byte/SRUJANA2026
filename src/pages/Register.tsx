@@ -344,7 +344,7 @@ amount: Math.round(finalAmount * 100),
                 : "bg-indigo-600 hover:bg-indigo-700"
             }`}
           >
-            {loading ? "Processing..." : `Pay ₹${finalAmount}`}
+            {loading ? "Processing..." : `Pay ₹${totalAmount}`}
           </button>
 
         </form>
