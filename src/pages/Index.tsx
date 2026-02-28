@@ -15,6 +15,26 @@ const Index = () => {
 
   return (
     <div ref={containerRef}>
+      {/* Academic Partner */}
+<section className="bg-background py-10 border-b border-border">
+  <div className="container mx-auto px-4 md:px-6 text-center">
+    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
+      Academic Partner
+    </p>
+    <img
+      src="/bits-logo.png"
+      alt="BITS Visakhapatnam"
+      className="h-24 mx-auto object-contain"
+    />
+    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
+BITS Visakhapatnam
+    </p>
+  </div>
+</section>
+
+        {/* Supported By */}
+      <SupportedBy />
+
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <HeroSlider images={[hero1, hero2, hero3]} />
@@ -75,24 +95,7 @@ SRUJANA is your stage to turn innovation into nation-building.
         </div>
       </section>
 
-      {/* Supported By */}
-      <SupportedBy />
-{/* Academic Partner */}
-<section className="bg-background py-10 border-b border-border">
-  <div className="container mx-auto px-4 md:px-6 text-center">
-    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
-      Academic Partner
-    </p>
-    <img
-      src="/bits-logo.png"
-      alt="BITS Visakhapatnam"
-      className="h-24 mx-auto object-contain"
-    />
-    <p className="text-muted-foreground text-sm uppercase tracking-widest mb-4">
-BITS Visakhapatnam
-    </p>
-  </div>
-</section>
+    
       {/* Events */}
       <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
         <EventsSection />
