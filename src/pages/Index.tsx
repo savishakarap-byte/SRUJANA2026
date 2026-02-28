@@ -17,7 +17,7 @@ const Index = () => {
     <div ref={containerRef}>
      
       {/* Hero */}
-     <section className="relative min-h-screen overflow-hidden">
+     <section className="pt-2 overflow-hidden">
 
   {/* Background */}
   <HeroSlider images={[hero1, hero2, hero3]} />
@@ -27,7 +27,7 @@ const Index = () => {
     <div className="max-w-7xl mx-auto px-4">
 
       {/* Logo strip (second red box in screenshot) */}
-      <div className="border-t border-border pt-6">
+      <div className="border-t border-border pt-3">
         <SupportedBy />
       </div>
 
