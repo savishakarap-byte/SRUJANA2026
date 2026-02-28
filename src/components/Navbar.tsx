@@ -32,34 +32,29 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-   
-<div className="container mx-auto px-4 md:px-6">
-  <div className="flex items-center h-16 md:h-20">
-    
-    {/* LEFT SIDE - All Logos Equal */}
-    <div className="flex items-center gap-6">
-      
-      <img src="/logo3.png" className="h-10 w-auto object-contain" />
+      <div className="container mx-auto px-4 md:px-6">
+        {/* MAIN NAV ROW */}
+        <div className="flex items-center justify-between h-16 md:h-20">
 
-      <Link 
-        to="/" 
-        className="font-heading text-xl md:text-2xl font-bold tracking-tight whitespace-nowrap"
-      >
-        <span className="gradient-text">SRUJANA</span>
-        <span className="text-muted-foreground ml-1 text-sm font-normal">
-          2026
-        </span>
-      </Link>
+          {/* LEFT SIDE */}
+          <div className="flex items-center gap-6">
+            <img src="/logo3.png" className="h-10 w-auto object-contain" />
 
-      <img src="/logo1.png" className="h-10 w-auto object-contain" />
-      <img src="/logo2.png" className="h-10 w-auto object-contain" />
+            <Link
+              to="/"
+              className="font-heading text-xl md:text-2xl font-bold tracking-tight whitespace-nowrap"
+            >
+              <span className="gradient-text">SRUJANA</span>
+              <span className="text-muted-foreground ml-1 text-sm font-normal">
+                2026
+              </span>
+            </Link>
 
-    </div>
+            <img src="/logo1.png" className="h-10 w-auto object-contain" />
+            <img src="/logo2.png" className="h-10 w-auto object-contain" />
+          </div>
 
-  </div>
-</div> 
-
-          {/* Desktop Nav */}
+          {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
@@ -74,6 +69,7 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+
             <Link
               to="/register"
               className="ml-2 px-5 py-2 rounded-lg text-sm font-semibold bg-primary text-primary-foreground glow-button"
@@ -82,7 +78,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* MOBILE TOGGLE */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-foreground"
@@ -92,10 +88,12 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* MOBILE DRAWER */}
       <div
         className={`md:hidden fixed inset-0 top-16 z-40 transition-all duration-300 ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         <div className="absolute inset-0 bg-background/95 backdrop-blur-xl" />
@@ -114,6 +112,7 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+
           <Link
             to="/register"
             className="w-full text-center mt-4 px-5 py-3 rounded-lg text-lg font-semibold bg-primary text-primary-foreground glow-button"
