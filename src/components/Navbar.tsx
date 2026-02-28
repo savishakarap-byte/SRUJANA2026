@@ -36,15 +36,15 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
          <div className="flex items-center gap-3">
   {/* LEFT LOGOS */}
-   <img src="/logo3.png" className="h-15" />
+   <img src="/logo3.png" className="h-11" />
             {/* Text Logo */}
   <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight">
     <span className="gradient-text">SRUJANA</span>
     <span className="text-muted-foreground ml-1 text-sm font-normal">2026</span>
   </Link>
 </div>
-  <img src="/logo1.png" className="h-11" />
-  <img src="/logo2.png" className="h-11" />
+  <img src="/logo1.png" className="h-10" />
+  <img src="/logo2.png" className="h-10" />
 
  
 
