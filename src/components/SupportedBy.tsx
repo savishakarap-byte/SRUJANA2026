@@ -70,7 +70,7 @@ const SupportedBy = () => {
   }, []);
 
   return (
-<section className="overflow-hidden">
+<section className="py-0 overflow-hidden">
   <div className="container mx-auto px-4">
 
         {/* ----- Dynamic Label ----- */}
