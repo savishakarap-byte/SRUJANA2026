@@ -1,158 +1,102 @@
 import { useEffect, useRef, useState } from "react";
 
+const ITEMS = [
+  { type: "sponsor", label: "Supported By", src: "/sponsor1.png" },
+  { type: "sponsor", label: "Supported By", src: "/sponsor2.png" },
+  { type: "sponsor", label: "Supported By", src: "/sponsor3.png" },
+  { type: "sponsor", label: "Supported By", src: "/sponsor4.png" },
+  { type: "sponsor", label: "Supported By", src: "/sponsor5.png" },
+  { type: "sponsor", label: "Supported By", src: "/sponsor6.png" },
+  { type: "academic", label: "Academic Partner", src: "/bits-logo.png" },
+];
+
 const SupportedBy = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const sponsorRef = useRef<HTMLDivElement>(null);
-  const academicRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [itemWidth, setItemWidth] = useState(280);
 
-  const [active, setActive] = useState<"sponsor" | "academic">("sponsor");
-
+  // Responsive width detection
   useEffect(() => {
-    let position = 0;
-    let speed = 0.6;
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemWidth(180); // mobile
+      } else if (window.innerWidth < 1024) {
+        setItemWidth(220); // tablet
+      } else {
+        setItemWidth(280); // desktop
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Animation
+  useEffect(() => {
     let animationFrame: number;
+    let current = 0;
 
     const animate = () => {
-      if (!containerRef.current) return;
+      if (!trackRef.current) return;
 
-      position -= speed;
+      current += 0.015; // speed
+      const total = ITEMS.length;
 
-      const totalWidth = containerRef.current.scrollWidth / 2;
+      if (current >= total) current = 0;
 
-      if (Math.abs(position) >= totalWidth) {
-        position = 0;
-      }
+      const index = Math.floor(current);
+      setActiveIndex(index);
 
-      containerRef.current.style.transform = `translateX(${position}px)`;
+      const offset = current * itemWidth;
+      trackRef.current.style.transform = `translateX(${-offset}px)`;
 
-      detectCenter();
       animationFrame = requestAnimationFrame(animate);
     };
 
-    const detectCenter = () => {
-      if (!containerRef.current) return;
-
-      const parentRect =
-        containerRef.current.parentElement?.getBoundingClientRect();
-
-      const center = parentRect
-        ? parentRect.left + parentRect.width / 2
-        : window.innerWidth / 2;
-
-      const sponsorRect = sponsorRef.current?.getBoundingClientRect();
-      const academicRect = academicRef.current?.getBoundingClientRect();
-
-      if (!sponsorRect || !academicRect) return;
-
-      const sponsorCenter = sponsorRect.left + sponsorRect.width / 2;
-      const academicCenter = academicRect.left + academicRect.width / 2;
-
-      const sponsorDistance = Math.abs(center - sponsorCenter);
-      const academicDistance = Math.abs(center - academicCenter);
-
-      let newActive: "sponsor" | "academic";
-
-      if (sponsorDistance < academicDistance) {
-        newActive = "sponsor";
-        speed = sponsorDistance < 150 ? 0.3 : 0.6;
-      } else {
-        newActive = "academic";
-        speed = academicDistance < 150 ? 0.3 : 0.6;
-      }
-
-      setActive((prev) => (prev !== newActive ? newActive : prev));
-    };
-
     animationFrame = requestAnimationFrame(animate);
-
     return () => cancelAnimationFrame(animationFrame);
-  }, []);
+  }, [itemWidth]);
 
   return (
-    <section className="py-24 overflow-hidden border-t border-border">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-20 md:py-24 overflow-hidden">
+      <div className="container mx-auto px-4">
 
-        {/* ===== LABEL WITH FADE + UNDERLINE ===== */}
-        <div className="text-center mb-10 relative h-10">
-
-          <div
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              active === "sponsor" ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <span className="text-lg font-bold uppercase tracking-widest">
-              Supported By
-              <span className="block h-[2px] bg-foreground mt-1 animate-underline" />
-            </span>
-          </div>
-
-          <div
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              active === "academic" ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <span className="text-lg font-bold uppercase tracking-widest">
-              Academic Partner
-              <span className="block h-[2px] bg-foreground mt-1 animate-underline" />
-            </span>
-          </div>
-
+        {/* ===== Dynamic Label ===== */}
+        <div className="text-center mb-8 md:mb-12 relative h-8 md:h-10">
+          <span className="text-base md:text-lg font-bold uppercase tracking-widest transition-all duration-500">
+            {ITEMS[activeIndex].label}
+            <span className="block h-[2px] bg-foreground mt-2 animate-underline" />
+          </span>
         </div>
 
-        {/* ===== SCROLL STRIP ===== */}
-        <div className="relative overflow-hidden">
+        {/* ===== Logo Track ===== */}
+        <div className="overflow-hidden">
           <div
-            ref={containerRef}
-            className="flex items-center whitespace-nowrap will-change-transform"
+            ref={trackRef}
+            className="flex items-center transition-transform duration-500 ease-out"
+            style={{ width: `${ITEMS.length * itemWidth}px` }}
           >
-
-            {/* Sponsors */}
-            <div
-              ref={sponsorRef}
-              className={`flex items-center mx-40 space-x-8 transition-transform duration-500 ${
-                active === "sponsor" ? "scale-110" : "scale-100"
-              }`}
-            >
-              <img src="/sponsor1.png" className="h-20 object-contain" />
-              <img src="/sponsor2.png" className="h-20 object-contain" />
-              <img src="/sponsor3.png" className="h-20 object-contain" />
-              <img src="/sponsor4.png" className="h-20 object-contain" />
-              <img src="/sponsor5.png" className="h-20 object-contain" />
-              <img src="/sponsor6.png" className="h-20 object-contain" />
-            </div>
-
-            {/* Academic */}
-            <div
-              ref={academicRef}
-              className={`flex items-center mx-40 transition-transform duration-500 ${
-                active === "academic" ? "scale-110" : "scale-100"
-              }`}
-            >
-              <img
-                src="/bits-logo.png"
-                className="h-20 object-contain"
-              />
-            </div>
-
-            {/* Duplicate for seamless scroll */}
-            <div className="flex items-center mx-40 space-x-8">
-              <img src="/sponsor1.png" className="h-20 object-contain" />
-              <img src="/sponsor2.png" className="h-20 object-contain" />
-              <img src="/sponsor3.png" className="h-20 object-contain" />
-              <img src="/sponsor4.png" className="h-20 object-contain" />
-              <img src="/sponsor5.png" className="h-20 object-contain" />
-              <img src="/sponsor6.png" className="h-20 object-contain" />
-            </div>
-
-            <div className="flex items-center mx-40">
-              <img
-                src="/bits-logo.png"
-                className="h-20 object-contain"
-              />
-            </div>
-
+            {ITEMS.map((item, i) => (
+              <div
+                key={i}
+                style={{ width: `${itemWidth}px` }}
+                className={`flex justify-center transition-all duration-500 ${
+                  activeIndex === i
+                    ? "scale-110 opacity-100"
+                    : "scale-90 opacity-40"
+                }`}
+              >
+                <img
+                  src={item.src}
+                  className="h-14 sm:h-16 md:h-20 object-contain"
+                  alt=""
+                />
+              </div>
+            ))}
           </div>
         </div>
+
       </div>
     </section>
   );
