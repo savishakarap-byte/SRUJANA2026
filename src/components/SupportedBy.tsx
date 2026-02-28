@@ -1,62 +1,75 @@
+import { useEffect, useRef, useState } from "react";
+
 const SupportedBy = () => {
+  const sponsorRef = useRef(null);
+  const academicRef = useRef(null);
+  const [activeLabel, setActiveLabel] = useState("Supported By");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === academicRef.current) {
+              setActiveLabel("Academic Partner");
+            } else {
+              setActiveLabel("Supported By");
+            }
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    if (sponsorRef.current) observer.observe(sponsorRef.current);
+    if (academicRef.current) observer.observe(academicRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-24 overflow-hidden border-t border-border">
       <div className="container mx-auto px-4 md:px-6">
 
-        <div className="relative overflow-hidden rounded-xl py-8">
+        {/* Dynamic Top Label */}
+        <div className="text-center mb-6">
+          <h2 className="text-lg font-bold uppercase tracking-widest transition-all duration-500">
+            {activeLabel}
+          </h2>
+        </div>
 
-          {/* Fade edges (transparent style) */}
-          <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-transparent to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-transparent to-transparent z-10 pointer-events-none" />
+        {/* Scroll Container */}
+        <div className="relative overflow-hidden">
 
           <div className="flex items-center animate-scroll whitespace-nowrap">
 
-            {/* FIRST LOOP */}
-            <div className="flex items-center mx-16 space-x-6">
-              <span className="text-sm font-bold uppercase tracking-widest">
-                Supported By
-              </span>
-              <img src="/sponsor1.png" className="h-20 object-contain" />
-              <img src="/sponsor2.png" className="h-20 object-contain" />
-              <img src="/sponsor3.png" className="h-20 object-contain" />
-              <img src="/sponsor4.png" className="h-20 object-contain" />
-              <img src="/sponsor5.png" className="h-20 object-contain" />
-              <img src="/sponsor6.png" className="h-20 object-contain" />
+            {/* Sponsor Block */}
+            <div ref={sponsorRef} className="flex items-center mx-32 space-x-8">
+              <img src="/sponsor1.png" className="h-20" />
+              <img src="/sponsor2.png" className="h-20" />
+              <img src="/sponsor3.png" className="h-20" />
+              <img src="/sponsor4.png" className="h-20" />
+              <img src="/sponsor5.png" className="h-20" />
+              <img src="/sponsor6.png" className="h-20" />
             </div>
 
-            <div className="flex items-center mx-16 space-x-6">
-              <span className="text-sm font-bold uppercase tracking-widest">
-                Academic Partner
-              </span>
-              <img
-                src="/bits-logo.png"
-                alt="BITS Visakhapatnam"
-                className="h-20 object-contain"
-              />
+            {/* Academic Block */}
+            <div ref={academicRef} className="flex items-center mx-32">
+              <img src="/bits-logo.png" className="h-20" />
             </div>
 
-            {/* DUPLICATE */}
-            <div className="flex items-center mx-16 space-x-6">
-              <span className="text-sm font-bold uppercase tracking-widest">
-                Supported By
-              </span>
-              <img src="/sponsor1.png" className="h-20 object-contain" />
-              <img src="/sponsor2.png" className="h-20 object-contain" />
-              <img src="/sponsor3.png" className="h-20 object-contain" />
-              <img src="/sponsor4.png" className="h-20 object-contain" />
-              <img src="/sponsor5.png" className="h-20 object-contain" />
-              <img src="/sponsor6.png" className="h-20 object-contain" />
+            {/* Duplicate */}
+            <div className="flex items-center mx-32 space-x-8">
+              <img src="/sponsor1.png" className="h-20" />
+              <img src="/sponsor2.png" className="h-20" />
+              <img src="/sponsor3.png" className="h-20" />
+              <img src="/sponsor4.png" className="h-20" />
+              <img src="/sponsor5.png" className="h-20" />
+              <img src="/sponsor6.png" className="h-20" />
             </div>
 
-            <div className="flex items-center mx-16 space-x-6">
-              <span className="text-sm font-bold uppercase tracking-widest">
-                Academic Partner
-              </span>
-              <img
-                src="/bits-logo.png"
-                alt="BITS Visakhapatnam"
-                className="h-20 object-contain"
-              />
+            <div className="flex items-center mx-32">
+              <img src="/bits-logo.png" className="h-20" />
             </div>
 
           </div>
