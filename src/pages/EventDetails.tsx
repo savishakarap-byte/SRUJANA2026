@@ -13,15 +13,12 @@ const EVENTS: any = {
 
     registration: {
       eligibility: [
-        "Open to Diploma, Undergraduate, and Postgraduate students.",
+        "Open to Diploma,Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
         "Individual and team participation allowed.",
-        "Maximum 4 members per team.",
         "Interdisciplinary teams are encouraged."
       ],
       process: [
         "Complete the online registration form.",
-        "Provide project title and abstract (150–250 words).",
-        "Upload concept note (PDF, max 2 pages).",
         "Pay the registration fee (non-refundable).",
         "Receive confirmation email with Participant ID."
       ],
@@ -37,7 +34,7 @@ const EVENTS: any = {
         "This is a Working Model Exhibition, not a chart display competition.",
       must: [
         "Model must be fully functional (live demonstration required).",
-        "Must solve a real-world problem.",
+        "Must solve a real-world problem in the given domains.",
         "Clear technical explanation required.",
         "Should show innovation or improvement."
       ],
