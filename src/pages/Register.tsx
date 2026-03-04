@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Footer from "@/components/Footer";
+import Footer from "../components/Footer";
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const eventOptions = [
   "Industry institute interaction",
 ];
 
-const eventPrices: Record<string, number> = {
+const eventPrices = {
   "Working model exhibition": 2,
   "Paper presentation": 1,
   "Poster presentation": 1,
@@ -33,8 +33,7 @@ export default function Register() {
   const [agreed, setAgreed] = useState(false);
   const [paymentError, setPaymentError] = useState("");
 
-  const participants =
-    participationType === "Individual" ? 1 : teamCount;
+  const participants = participationType === "Individual" ? 1 : teamCount;
 
   const feePerPerson = eventPrices[selectedEvent] || 0;
 
@@ -42,18 +41,21 @@ export default function Register() {
 
   const razorpayFeePercent = 2.36;
 
-  const transactionFee =
-    totalAmount * (razorpayFeePercent / 100);
+  const transactionFee = totalAmount * (razorpayFeePercent / 100);
 
   const finalAmount = totalAmount + transactionFee;
 
-
-  const handlePayment = (form: any) => {
+  const handlePayment = (form) => {
 
     setPaymentError("");
 
     if (!selectedEvent) {
       alert("Select event first");
+      return;
+    }
+
+    if (!window.Razorpay) {
+      alert("Payment system not loaded. Refresh the page.");
       return;
     }
 
@@ -69,7 +71,7 @@ export default function Register() {
 
       description: selectedEvent,
 
-      handler: async function (response: any) {
+      handler: async function (response) {
         await submitToBackend(response.razorpay_payment_id, form);
       },
 
@@ -85,7 +87,7 @@ export default function Register() {
 
     };
 
-    const rzp = new (window as any).Razorpay(options);
+    const rzp = new window.Razorpay(options);
 
     rzp.on("payment.failed", function () {
 
@@ -98,12 +100,11 @@ export default function Register() {
 
   };
 
-
-  const submitToBackend = async (paymentId: string, form: any) => {
+  const submitToBackend = async (paymentId, form) => {
 
     setLoading(true);
 
-    const members: any[] = [];
+    const members = [];
 
     if (participationType === "Team") {
 
@@ -124,8 +125,7 @@ export default function Register() {
 
       participationType,
 
-      teamName:
-        participationType === "Team" ? form.teamName.value : "",
+      teamName: participationType === "Team" ? form.teamName.value : "",
 
       leadName: form.fullName.value,
 
@@ -196,8 +196,7 @@ export default function Register() {
 
   };
 
-
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e) => {
 
     e.preventDefault();
 
@@ -221,13 +220,11 @@ export default function Register() {
 
   };
 
-
-  const retryPayment = (form: any) => {
+  const retryPayment = (form) => {
 
     handlePayment(form);
 
   };
-
 
   if (submitted) {
 
@@ -259,27 +256,17 @@ export default function Register() {
 
   }
 
-
   return (
 
     <div className="min-h-screen pt-24 bg-gradient-to-br from-slate-100 to-blue-200 relative">
 
       {loading && (
-
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-
           <div className="bg-white p-6 rounded-xl flex items-center gap-3 shadow-xl">
-
             <div className="w-6 h-6 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-
-            <span className="font-medium">
-              Processing payment...
-            </span>
-
+            <span className="font-medium">Processing payment...</span>
           </div>
-
         </div>
-
       )}
 
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-2xl border border-slate-200">
@@ -334,7 +321,6 @@ export default function Register() {
 
           </div>
 
-
           {participationType === "Team" && (
 
             <select
@@ -353,46 +339,32 @@ export default function Register() {
 
           )}
 
-
           <input name="fullName" required placeholder="Full Name" className="input-modern" />
-
           <input name="email" type="email" required placeholder="Email" className="input-modern" />
-
           <input name="mobile" required pattern="[0-9]{10}" placeholder="Mobile" className="input-modern" />
-
           <input name="college" required placeholder="College" className="input-modern" />
-
           <input name="department" required placeholder="Department" className="input-modern" />
 
-
           {["Working model exhibition","Paper presentation","Poster presentation"].includes(selectedEvent) && (
-
             <input
               name="projectTitle"
               required
               placeholder="Title of Project / Paper / Poster"
               className="input-modern"
             />
-
           )}
 
-
           {participationType === "Team" && (
-
             <>
               <input name="teamName" required placeholder="Team Name" className="input-modern" />
-
               {[...Array(teamCount - 1)].map((_, i) => (
-
                 <div key={i} className="grid grid-cols-2 gap-4">
-
                   <input
                     name={`memberName${i}`}
                     required
                     placeholder={`Member ${i + 1} Name`}
                     className="input-modern"
                   />
-
                   <input
                     name={`memberMobile${i}`}
                     required
@@ -400,15 +372,10 @@ export default function Register() {
                     placeholder={`Member ${i + 1} Mobile`}
                     className="input-modern"
                   />
-
                 </div>
-
               ))}
-
             </>
-
           )}
-
 
           <div className="flex items-start gap-2 text-sm mt-3">
 
@@ -432,13 +399,9 @@ export default function Register() {
 
           </div>
 
-
           {paymentError && (
-
             <div className="bg-red-100 text-red-700 p-3 rounded-lg text-sm">
-
               {paymentError}
-
               <button
                 type="button"
                 onClick={(e) => retryPayment((e.currentTarget.form))}
@@ -446,11 +409,8 @@ export default function Register() {
               >
                 Retry Payment
               </button>
-
             </div>
-
           )}
-
 
           <button
             type="submit"
@@ -468,103 +428,7 @@ export default function Register() {
 
       </div>
 
-
-      <div className="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-2xl shadow-lg border">
-
-        <h3 className="text-xl font-bold mb-3">
-          Registration Instructions
-        </h3>
-
-        <p className="text-sm text-gray-700 mb-3">
-          Participants must carefully read the instructions before registering for SRUJANA 2026 events.
-        </p>
-
-        <h4 className="font-semibold mt-3">Fee Particulars</h4>
-
-        <ul className="list-disc ml-5 text-sm text-gray-700">
-
-          <li>Working Model Exhibition – ₹2 per participant</li>
-          <li>Paper Presentation – ₹1 per participant</li>
-          <li>Poster Presentation – ₹1 per participant</li>
-          <li>Hackathon – ₹1 per participant</li>
-          <li>Industry Institute Interaction – ₹1 per participant</li>
-
-        </ul>
-
-        <h4 className="font-semibold mt-4">
-          Conditions to Register
-        </h4>
-
-        <ul className="list-disc ml-5 text-sm text-gray-700">
-
-          <li>Participants must belong to a recognized institution.</li>
-          <li>All participants must provide valid contact details.</li>
-          <li>Team events must include accurate team member details.</li>
-          <li>Registration fee once paid is non-refundable.</li>
-
-        </ul>
-
-        <h4 className="font-semibold mt-4">
-          How to Register
-        </h4>
-
-        <ol className="list-decimal ml-5 text-sm text-gray-700">
-
-          <li>Select the event.</li>
-          <li>Choose Individual or Team participation.</li>
-          <li>Fill in personal and college details.</li>
-          <li>Provide project/paper/poster title if applicable.</li>
-          <li>Accept terms and complete payment.</li>
-
-        </ol>
-
-      </div>
-
-
       <Footer />
-
-
-<style>{`
-
-.input-modern {
-
-width: 100%;
-
-padding: 12px;
-
-border: 1px solid #cbd5e1;
-
-border-radius: 10px;
-
-font-size: 15px;
-
-color: #1e293b;
-
-background: #ffffff;
-
-transition: all 0.2s ease;
-
-}
-
-.input-modern::placeholder {
-
-color: #64748b;
-
-opacity: 1;
-
-}
-
-.input-modern:focus {
-
-outline: none;
-
-border-color: #4f46e5;
-
-box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
-
-}
-
-`}</style>
 
     </div>
 
