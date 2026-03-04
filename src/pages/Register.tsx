@@ -347,8 +347,8 @@ export default function Register() {
                 className={`flex-1 py-2 rounded ${
                   participationType === type
                     ? "bg-indigo-600 text-white"
-                    : "bg-gray-100"
-                }`}
+:bg-gray-100 text-slate-800 border border-slate-300
+                  }`}
               >
                 {type}
               </button>
@@ -442,8 +442,8 @@ export default function Register() {
               className="mt-1"
             />
 
-            <span>
-              I agree to the{" "}
+<span className="text-slate-800">
+  I agree to the{" "}
               <Link to="/terms-and-conditions" className="underline text-primary">
                 Terms & Conditions
               </Link>{" "}
