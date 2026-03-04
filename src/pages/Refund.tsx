@@ -1,12 +1,16 @@
 export default function RefundPolicy() {
+
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
-    <div className="min-h-screen pt-24 bg-black/50 flex items-start justify-center p-6">
+    <div className="min-h-screen pt-24 bg-black/50 flex justify-center p-6 overflow-y-auto">
 
       <div className="bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-xl max-w-4xl w-full text-slate-800">
 
-        {/* Back Button */}
         <button
-          onClick={() => window.history.back()}
+          onClick={goBack}
           className="mb-6 text-indigo-600 font-medium underline"
         >
           ← Back
@@ -17,10 +21,9 @@ export default function RefundPolicy() {
         </h1>
 
         <p className="mb-4">
-          This Refund Policy applies to all registrations made for events under
-          SRUJANA 2026 – State Level Technical Innovation and Project Exhibition.
-          By completing registration and payment, participants agree to the
-          refund conditions described below.
+          This Refund Policy applies to registrations made for SRUJANA 2026.
+          By completing payment, participants agree to the refund conditions
+          mentioned below.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -28,8 +31,8 @@ export default function RefundPolicy() {
         </h2>
 
         <ul className="list-disc pl-6 space-y-2">
-          <li>All registration fees are collected to support the organization of the event.</li>
-          <li>Payment once made is considered confirmation of participation.</li>
+          <li>Registration fees support event organization.</li>
+          <li>Payment confirms participation.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -37,9 +40,9 @@ export default function RefundPolicy() {
         </h2>
 
         <ul className="list-disc pl-6 space-y-2">
-          <li>Registration fees once paid are generally <b>non-refundable</b>.</li>
-          <li>Participants who fail to attend the event will not be eligible for a refund.</li>
-          <li>Refund requests based on personal reasons will not be accepted.</li>
+          <li>Fees once paid are generally non-refundable.</li>
+          <li>No refunds for non-attendance.</li>
+          <li>Refunds will not be issued for personal reasons.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -47,8 +50,8 @@ export default function RefundPolicy() {
         </h2>
 
         <ul className="list-disc pl-6 space-y-2">
-          <li>If a participant accidentally makes multiple payments for the same registration, the extra payment may be eligible for refund.</li>
-          <li>Participants must contact the organizers within 5 days with proof of payment.</li>
+          <li>Duplicate payments may be refunded after verification.</li>
+          <li>Participants must contact organizers within 5 days.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
@@ -56,26 +59,22 @@ export default function RefundPolicy() {
         </h2>
 
         <ul className="list-disc pl-6 space-y-2">
-          <li>If the event is cancelled by the organizers due to unforeseen circumstances, participants may receive a refund or alternative participation options.</li>
-          <li>In case of schedule changes, refunds may not be applicable.</li>
+          <li>If the event is cancelled by organizers, refunds may be issued.</li>
+          <li>Schedule changes may not qualify for refunds.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
-          5. Payment Gateway Issues
+          5. Payment Issues
         </h2>
 
         <ul className="list-disc pl-6 space-y-2">
-          <li>If payment is deducted but registration confirmation is not received, participants should contact the organizers.</li>
-          <li>After verification, the issue will be resolved or refunded if necessary.</li>
+          <li>If payment is deducted but registration fails, contact organizers.</li>
+          <li>Issues will be verified and resolved.</li>
         </ul>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">
           Contact for Refund Queries
         </h2>
-
-        <p>
-          For any payment or refund related queries, please contact:
-        </p>
 
         <p className="mt-2 font-medium">
           savishkarandhrapradesh@gmail.com
