@@ -7,12 +7,12 @@ export default function RefundPolicy() {
       <div className="bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-xl max-w-4xl w-full text-slate-800">
 
         {/* Back Button */}
-        <Link
-          to="/register"
-          className="inline-block mb-6 text-indigo-600 font-medium underline"
+         <button
+          onClick={() => window.history.back()}
+          className="mb-6 text-indigo-600 font-medium underline"
         >
-          ← Back to Registration
-        </Link>
+          ← Back
+        </button>
 
         <h1 className="text-3xl font-bold mb-6 text-center">
           Refund Policy – SRUJANA 2026
