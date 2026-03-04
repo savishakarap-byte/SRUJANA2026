@@ -10,7 +10,7 @@ import Poster from "./pages/Poster";
 import Brochure from "./pages/Brochure";
 import EventDetails from "./pages/EventDetails";
 import Terms from "./pages/Terms";
-import RefundPolicy from "./pages/RefundPolicy";
+import Refund from "./pages/Refund";
 import NotFound from "./pages/NotFound";
 import Maintenance from "./pages/Maintenance";
 const queryClient = new QueryClient();
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/brochure" element={<Brochure />} />
           <Route path="/event/:slug" element={<EventDetails />} />
           <Route path="/terms-and-conditions" element={<Terms />} />
-<Route path="/refund-policy" element={<RefundPolicy />} />
+<Route path="/refund-policy" element={<Refund />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
