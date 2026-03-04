@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
-
 export default function RefundPolicy() {
   return (
-    <div className="min-h-screen bg-black/50 flex items-center justify-center p-6">
+    <div className="min-h-screen pt-24 bg-black/50 flex items-start justify-center p-6">
 
       <div className="bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-xl max-w-4xl w-full text-slate-800">
 
         {/* Back Button */}
-         <button
+        <button
           onClick={() => window.history.back()}
           className="mb-6 text-indigo-600 font-medium underline"
         >
