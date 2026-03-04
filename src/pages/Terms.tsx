@@ -1,18 +1,16 @@
-import { Link } from "react-router-dom";
-
 export default function Terms() {
   return (
-    <div className="min-h-screen bg-black/50 flex items-center justify-center p-6">
+    <div className="min-h-screen pt-24 bg-black/50 flex items-start justify-center p-6">
 
       <div className="bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-xl max-w-4xl w-full text-slate-800">
 
         {/* Back Button */}
-        <Link
-          to="/register"
-          className="inline-block mb-6 text-indigo-600 font-medium underline"
+        <button
+          onClick={() => window.history.back()}
+          className="mb-6 text-indigo-600 font-medium underline"
         >
-          ← Back to Registration
-        </Link>
+          ← Back
+        </button>
 
         <h1 className="text-3xl font-bold mb-6 text-center">
           Terms & Conditions – SRUJANA 2026
