@@ -48,6 +48,15 @@ export default function Register() {
     selectedEvent === "Paper presentation" ||
     selectedEvent === "Poster presentation";
 
+  const resetForm = () => {
+    setSubmitted(false);
+    setRegistrationId("");
+    setParticipationType("Individual");
+    setTeamCount(2);
+    setSelectedEvent("");
+    setAgreed(false);
+  };
+
   const handlePayment = (form: any) => {
 
     const options = {
@@ -162,11 +171,18 @@ export default function Register() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="bg-white p-10 rounded-xl shadow-xl text-center">
+      <div className="min-h-screen flex items-center justify-center bg-slate-100">
+        <div className="bg-white p-10 rounded-xl shadow-xl text-center max-w-md">
           <CheckCircle className="mx-auto mb-3 text-green-600" size={48}/>
-          <h2 className="text-2xl font-bold">Registration Successful</h2>
-          <p>ID: {registrationId}</p>
+          <h2 className="text-2xl font-bold text-gray-900">Registration Successful</h2>
+          <p className="mt-2 text-gray-700">Registration ID: {registrationId}</p>
+
+          <button
+            onClick={resetForm}
+            className="mt-6 px-6 py-2 bg-indigo-600 text-white rounded-lg"
+          >
+            Back to Registration
+          </button>
         </div>
       </div>
     );
@@ -199,6 +215,12 @@ Registration Instructions
 
 </ul>
 
+{/* Mobile scroll indicator */}
+
+<div className="md:hidden mt-6 text-center text-indigo-600 font-medium">
+⬇ Scroll down to registration
+</div>
+
 </div>
 
 {/* RIGHT SIDE FORM */}
@@ -210,8 +232,6 @@ SRUJANA 2026 Registration
 </h2>
 
 <form onSubmit={handleSubmit} className="space-y-4">
-
-{/* Event Type */}
 
 <select
 required
@@ -232,20 +252,26 @@ className="input-modern"
 <button
 type="button"
 onClick={()=>setParticipationType("Individual")}
-className={`flex-1 py-2 rounded ${participationType==="Individual"?"bg-indigo-600 text-white":"bg-gray-200"}`}>
+className={`flex-1 py-2 rounded font-medium ${
+participationType==="Individual"
+? "bg-indigo-600 text-white"
+: "bg-gray-200 text-gray-900"
+}`}>
 Individual
 </button>
 
 <button
 type="button"
 onClick={()=>setParticipationType("Team")}
-className={`flex-1 py-2 rounded ${participationType==="Team"?"bg-indigo-600 text-white":"bg-gray-200"}`}>
+className={`flex-1 py-2 rounded font-medium ${
+participationType==="Team"
+? "bg-indigo-600 text-white"
+: "bg-gray-200 text-gray-900"
+}`}>
 Team
 </button>
 
 </div>
-
-{/* Team Size */}
 
 {participationType==="Team" && (
 
@@ -261,27 +287,15 @@ className="input-modern"
 
 )}
 
-{/* Email */}
-
 <input name="email" type="email" required placeholder="Email" className="input-modern"/>
-
-{/* Full Name */}
 
 <input name="fullName" required placeholder="Full Name" className="input-modern"/>
 
-{/* Mobile */}
-
 <input name="mobile" required pattern="[0-9]{10}" placeholder="Mobile Number" className="input-modern"/>
-
-{/* College */}
 
 <input name="college" required placeholder="College Name" className="input-modern"/>
 
-{/* Department */}
-
 <input name="department" required placeholder="Department" className="input-modern"/>
-
-{/* Conditional Title */}
 
 {showTitleField && (
 <input
@@ -291,8 +305,6 @@ placeholder="Title of Project / Poster / Paper"
 className="input-modern"
 />
 )}
-
-{/* Team Members */}
 
 {participationType==="Team" && (
 
