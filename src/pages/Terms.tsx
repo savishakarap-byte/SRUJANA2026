@@ -5,14 +5,14 @@ export default function Terms() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen pt-28 px-6 flex justify-center bg-gray-100">
+    <div className="min-h-screen pt-28 px-6 flex justify-center bg-black text-white">
 
-      <div className="max-w-4xl w-full bg-white/50 backdrop-blur-md p-10 rounded-xl shadow-lg text-gray-900">
+      <div className="max-w-4xl w-full bg-black/50 backdrop-blur-md p-10 rounded-xl shadow-lg border border-white/10">
 
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="mb-6 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700"
+          className="mb-6 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded transition"
         >
           ← Back
         </button>
@@ -21,14 +21,14 @@ export default function Terms() {
           Terms & Conditions – SRUJANA 2026
         </h1>
 
-        <p className="mb-4">
+        <p className="mb-4 text-gray-300">
           SRUJANA 2026 is a State Level Technical Innovation Fest organized to
           promote creativity, engineering skills, and technological ideas among
           students. By registering for any event in SRUJANA 2026, participants
           agree to comply with the following terms and conditions.
         </p>
 
-        <ul className="list-disc pl-6 space-y-4">
+        <ul className="list-disc pl-6 space-y-4 text-gray-300">
 
           <li>
             All registrations must be completed through the official SRUJANA
@@ -69,7 +69,8 @@ export default function Terms() {
 
           <li>
             By participating in SRUJANA 2026, participants allow organizers to
-            capture photos and videos for promotional purposes.
+            capture photos and videos for promotional and documentation
+            purposes.
           </li>
 
           <li>
@@ -79,11 +80,11 @@ export default function Terms() {
 
         </ul>
 
-        <p className="mt-8">
+        <p className="mt-8 text-gray-300">
           For queries contact:
         </p>
 
-        <p className="font-semibold mt-2">
+        <p className="font-semibold mt-2 text-white">
           savishkarandhrapradesh@gmail.com
         </p>
 
