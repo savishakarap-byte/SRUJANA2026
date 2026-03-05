@@ -38,12 +38,15 @@ export default function Register() {
     participationType === "Individual" ? 1 : teamCount;
 
   const feePerPerson = eventPrices[selectedEvent] || 0;
-
   const totalAmount = participants * feePerPerson;
-
   const razorpayFeePercent = 2.36;
   const transactionFee = totalAmount * (razorpayFeePercent / 100);
   const finalAmount = totalAmount + transactionFee;
+
+  const showTitleField =
+    selectedEvent === "Working model exhibition" ||
+    selectedEvent === "Paper presentation" ||
+    selectedEvent === "Poster presentation";
 
   const handlePayment = (form: any) => {
 
@@ -84,22 +87,18 @@ export default function Register() {
     const members: any[] = [];
 
     if (participationType === "Team") {
-
       for (let i = 0; i < teamCount - 1; i++) {
-
         members.push({
           name: form[`memberName${i}`].value,
           mobile: form[`memberMobile${i}`].value,
           department: form[`memberDept${i}`].value,
         });
-
       }
-
     }
 
     const payload = {
       eventType: selectedEvent,
-      title: form.title.value,
+      title: form.title?.value || "",
       participationType,
       teamName: participationType === "Team" ? form.teamName.value : "",
       leadName: form.fullName.value,
@@ -134,7 +133,6 @@ export default function Register() {
     }
 
     setLoading(false);
-
   };
 
   const handleSubmit = async (e: any) => {
@@ -184,27 +182,20 @@ export default function Register() {
 
 <div className="bg-white p-8 rounded-xl shadow">
 
-<h2 className="text-2xl font-bold mb-4">
+<h2 className="text-2xl font-bold mb-4 text-gray-900">
 Registration Instructions
 </h2>
 
-<ul className="space-y-3 text-gray-700 text-sm">
+<ul className="space-y-3 text-gray-800 text-sm">
 
 <li>• Select the event you want to participate in.</li>
-
-<li>• Provide accurate personal details.</li>
-
-<li>• For team events, add all member details.</li>
-
+<li>• Choose participation type (Individual or Team).</li>
+<li>• For team participation choose team size.</li>
+<li>• Enter accurate participant details.</li>
+<li>• Title is required for model / paper / poster events.</li>
 <li>• Maximum team size allowed is 4 members.</li>
-
-<li>• Enter correct project / paper / poster title.</li>
-
 <li>• Complete payment to confirm registration.</li>
-
-<li>• You will receive a confirmation email.</li>
-
-<li>• Keep your registration ID safe.</li>
+<li>• Keep your registration ID for reference.</li>
 
 </ul>
 
@@ -214,11 +205,13 @@ Registration Instructions
 
 <div className="bg-white p-8 rounded-xl shadow">
 
-<h2 className="text-2xl font-bold mb-6">
+<h2 className="text-2xl font-bold mb-6 text-gray-900">
 SRUJANA 2026 Registration
 </h2>
 
 <form onSubmit={handleSubmit} className="space-y-4">
+
+{/* Event Type */}
 
 <select
 required
@@ -232,50 +225,74 @@ className="input-modern"
 ))}
 </select>
 
-<input
-name="title"
-required
-placeholder="Project / Paper / Poster Title"
-className="input-modern"
-/>
-
-<input name="fullName" required placeholder="Full Name" className="input-modern"/>
-
-<input
-name="email"
-type="email"
-required
-placeholder="Email"
-className="input-modern"
-/>
-
-<input
-name="mobile"
-required
-pattern="[0-9]{10}"
-placeholder="Mobile"
-className="input-modern"
-/>
-
-<input name="college" required placeholder="College" className="input-modern"/>
-
-<input name="department" required placeholder="Department" className="input-modern"/>
+{/* Participation Type */}
 
 <div className="flex gap-3">
 
-<button type="button"
+<button
+type="button"
 onClick={()=>setParticipationType("Individual")}
 className={`flex-1 py-2 rounded ${participationType==="Individual"?"bg-indigo-600 text-white":"bg-gray-200"}`}>
 Individual
 </button>
 
-<button type="button"
+<button
+type="button"
 onClick={()=>setParticipationType("Team")}
 className={`flex-1 py-2 rounded ${participationType==="Team"?"bg-indigo-600 text-white":"bg-gray-200"}`}>
 Team
 </button>
 
 </div>
+
+{/* Team Size */}
+
+{participationType==="Team" && (
+
+<select
+value={teamCount}
+onChange={(e)=>setTeamCount(Number(e.target.value))}
+className="input-modern"
+>
+<option value={2}>Team Size 2</option>
+<option value={3}>Team Size 3</option>
+<option value={4}>Team Size 4</option>
+</select>
+
+)}
+
+{/* Email */}
+
+<input name="email" type="email" required placeholder="Email" className="input-modern"/>
+
+{/* Full Name */}
+
+<input name="fullName" required placeholder="Full Name" className="input-modern"/>
+
+{/* Mobile */}
+
+<input name="mobile" required pattern="[0-9]{10}" placeholder="Mobile Number" className="input-modern"/>
+
+{/* College */}
+
+<input name="college" required placeholder="College Name" className="input-modern"/>
+
+{/* Department */}
+
+<input name="department" required placeholder="Department" className="input-modern"/>
+
+{/* Conditional Title */}
+
+{showTitleField && (
+<input
+name="title"
+required
+placeholder="Title of Project / Poster / Paper"
+className="input-modern"
+/>
+)}
+
+{/* Team Members */}
 
 {participationType==="Team" && (
 
@@ -285,19 +302,20 @@ Team
 {[...Array(teamCount-1)].map((_,i)=>(
 <div key={i} className="grid grid-cols-3 gap-2">
 
-<input name={`memberName${i}`} placeholder="Name" className="input-modern"/>
+<input name={`memberName${i}`} placeholder="Member Name" className="input-modern"/>
 
-<input name={`memberMobile${i}`} placeholder="Mobile" className="input-modern"/>
+<input name={`memberMobile${i}`} placeholder="Mobile Number" className="input-modern"/>
 
 <input name={`memberDept${i}`} placeholder="Department" className="input-modern"/>
 
 </div>
 ))}
+
 </>
 
 )}
 
-<div className="flex gap-2 text-sm">
+<div className="flex gap-2 text-sm text-gray-800">
 
 <input type="checkbox"
 checked={agreed}
@@ -305,18 +323,21 @@ onChange={()=>setAgreed(!agreed)}
 />
 
 <span>
-I agree to the
-<Link to="/terms-and-conditions" className="underline"> Terms</Link>
-and
-<Link to="/refund-policy" className="underline"> Refund Policy</Link>
+I agree to the{" "}
+<Link to="/terms" className="underline text-indigo-600">
+Terms & Conditions
+</Link>{" "}
+and{" "}
+<Link to="/refund" className="underline text-indigo-600">
+Refund Policy
+</Link>.
 </span>
 
 </div>
 
 <button
 type="submit"
-className="w-full py-3 bg-indigo-600 text-white rounded-lg"
->
+className="w-full py-3 bg-indigo-600 text-white rounded-lg">
 Pay ₹{finalAmount.toFixed(2)}
 </button>
 
@@ -334,10 +355,14 @@ width:100%;
 padding:10px;
 border:1px solid #cbd5e1;
 border-radius:8px;
+color:#0f172a;
+background:#ffffff;
+}
+.input-modern::placeholder{
+color:#475569;
 }
 `}</style>
 
 </div>
-
   );
 }
