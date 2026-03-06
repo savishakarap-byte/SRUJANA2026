@@ -190,7 +190,8 @@ feePerPerson: participationType === "Individual" ? 200 : 500,
 
   return (
 
-<div className="min-h-screen pt-24 bg-slate-100">
+<div className="min-h-screen pt-24 bg-slate-100 flex flex-col">
+  <div className="flex-grow">
 
 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 p-6">
 
