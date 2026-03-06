@@ -107,7 +107,7 @@ const ThemesSection = () => {
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
           Themes
         </h2>
-        <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">
+        <p className="font-heading text-3xl md:text-4xl font-bold text-foreground">
 Domains for Working Model Exhibition, Poster Presentation & Paper Presentation
 SRUJANA 2026 invites students to present innovative ideas, research, and prototypes addressing real-world challenges. Participants may submit their working models, research papers, or posters under the following themes.        </p>
       </div>
