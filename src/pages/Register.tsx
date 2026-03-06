@@ -340,7 +340,7 @@ I agree to the{" "}
 Terms & Conditions
 </Link>{" "}
 and{" "}
-<Link to="/refund" className="underline text-indigo-600">
+<Link to="/refund-policy" className="underline text-indigo-600">
 Refund Policy
 </Link>.
 </span>
