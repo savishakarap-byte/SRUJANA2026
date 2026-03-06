@@ -68,21 +68,21 @@ const EVENTS: any = {
     subtitle: "Present your research to experts",
 
     highlights: [
-      "Team Size: 2",
+      "Team Size: 3",
       "8 Minutes + 2 Q&A",
       "IEEE Format Required",
     ],
 
     registration: {
       eligibility: [
-        "Open to Diploma, UG, and PG students.",
-        "Maximum 2 members per team."
+        "Open to Diploma, B-Tech, and M-Tech students.",
+        "Maximum 4 members per team."
       ],
       process: [
-        "Submit abstract during registration.",
-        "Upload full paper in IEEE format.",
+        "Fill details of Students",
+        "Provide Title",
         "Pay registration fee.",
-        "Await confirmation email."
+        "confirmation email."
       ],
       important: [
         "Plagiarism leads to immediate rejection.",
@@ -112,7 +112,7 @@ const EVENTS: any = {
     },
 
     rules: [
-      "Maximum 2 members per team.",
+      "Maximum 4 members per team.",
       "Presentation time strictly limited.",
       "Judges decision will be final."
     ],
@@ -123,19 +123,18 @@ const EVENTS: any = {
     subtitle: "Communicate ideas visually and effectively",
 
     highlights: [
-      "Team Size: 2",
+      "Team Size: 3",
       "Research Based",
       "Visual Communication",
     ],
 
     registration: {
       eligibility: [
-        "Open to Diploma, UG, and PG students.",
-        "Maximum 2 members per team."
+        "Open to Diploma, B-Tech, and M-Tech students.",
+        "Maximum 4 members per team."
       ],
       process: [
-        "Submit poster abstract.",
-        "Upload digital poster preview.",
+        "Submit poster Title.",
         "Pay registration fee."
       ],
       important: [
@@ -166,7 +165,7 @@ const EVENTS: any = {
     },
 
     rules: [
-      "Maximum 2 members per team.",
+      "Maximum 3 members per team.",
       "Poster size as per guidelines.",
       "Judges decision will be final."
     ],
@@ -184,7 +183,7 @@ const EVENTS: any = {
 
     registration: {
       eligibility: [
-        "Open to UG and PG students.",
+        "Open to Diploma ,B-Tech and M-Tech students.",
         "Maximum 4 members per team."
       ],
       process: [
@@ -206,7 +205,7 @@ const EVENTS: any = {
         "No pre-built projects allowed."
       ],
       include: [
-        "Working prototype",
+        "Working Solution",
         "Problem explanation",
         "Demo presentation"
       ],
@@ -237,10 +236,11 @@ const EVENTS: any = {
 
     registration: {
       eligibility: [
-        "Open to all registered students."
+        "Open to Diploma, B-Tech and M-Tech students and Startups.",
       ],
       process: [
         "Register online.",
+        "Pay registration fee.",
         "Receive session confirmation."
       ],
       important: [
