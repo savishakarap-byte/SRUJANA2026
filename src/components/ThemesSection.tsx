@@ -1,126 +1,126 @@
-import { Cpu, Leaf, Shield, Zap, HeartPulse, Factory, Car, HardHat, Recycle, Lightbulb } from "lucide-react";
+import { Leaf, Cpu, Shield, Zap, HeartPulse, Factory, Car, HardHat, Recycle, Lightbulb } from "lucide-react";
 
-export default function ThemesSection() {
+interface ThemeCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  delay?: number;
+}
+
+const ThemeCard = ({ icon, title, description, delay = 0 }: ThemeCardProps) => (
+  <div
+    className="glass-card-hover p-6 md:p-8 group"
+    style={{ animationDelay: `${delay}s` }}
+  >
+    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+      <div className="text-primary">{icon}</div>
+    </div>
+
+    <h3 className="font-heading text-lg font-semibold mb-2 text-foreground">
+      {title}
+    </h3>
+
+    <p className="text-sm text-muted-foreground leading-relaxed">
+      {description}
+    </p>
+  </div>
+);
 
 const themes = [
-{
-title: "Agricultural Technology",
-icon: Leaf,
-desc: "Smart farming, irrigation systems, greenhouse automation, aquaculture, food technology and rainwater harvesting innovations."
-},
+  {
+    icon: <Leaf size={24} />,
+    title: "Agricultural Technology",
+    description:
+      "Smart farming, irrigation systems, greenhouse automation, aquaculture, and rainwater harvesting innovations.",
+  },
+  {
+    icon: <Cpu size={24} />,
+    title: "Computational Intelligence",
+    description:
+      "Artificial Intelligence, Machine Learning, Computer Vision, Blockchain, and Data Science applications.",
+  },
+  {
+    icon: <Shield size={24} />,
+    title: "Defence & Cyber Security",
+    description:
+      "Cyber security systems, secure communication networks, defence surveillance, and data privacy technologies.",
+  },
+  {
+    icon: <Zap size={24} />,
+    title: "Energy",
+    description:
+      "Renewable energy technologies, energy storage systems, smart grids, and energy efficient devices.",
+  },
+  {
+    icon: <HeartPulse size={24} />,
+    title: "Healthcare & Medical Technology",
+    description:
+      "Medical devices, biomedical electronics, telemedicine technologies, and health monitoring systems.",
+  },
+  {
+    icon: <Factory size={24} />,
+    title: "Industrial Automation",
+    description:
+      "Robotics, Industry 4.0 systems, instrumentation, automated material handling, and IoT applications.",
+  },
+  {
+    icon: <Car size={24} />,
+    title: "Smart Mobility",
+    description:
+      "Electric vehicles, battery management systems, charging technologies, drones, and autonomous mobility.",
+  },
+  {
+    icon: <HardHat size={24} />,
+    title: "Safety Technologies",
+    description:
+      "Industrial safety systems, disaster prevention technologies, and worker safety innovations.",
+  },
+  {
+    icon: <HardHat size={24} />,
+    title: "Sustainable Infrastructure",
+    description:
+      "Smart cities, disaster-resistant structures, transportation infrastructure, and sustainable civil engineering.",
+  },
+  {
+    icon: <Recycle size={24} />,
+    title: "Waste Management",
+    description:
+      "Waste-to-energy systems, recycling technologies, pollution control systems, and biodegradable materials.",
+  },
+  {
+    icon: <Lightbulb size={24} />,
+    title: "Open Innovation",
+    description:
+      "Innovative ideas that may not fall under other themes but demonstrate strong technical creativity.",
+  },
+];
 
-{
-title: "Computational Intelligence",
-icon: Cpu,
-desc: "Artificial Intelligence, Machine Learning, Computer Vision, Blockchain, and Data Science based innovations."
-},
+const ThemesSection = () => {
+  return (
+    <section className="section-fade-in">
 
-{
-title: "Defence & Cyber Security",
-icon: Shield,
-desc: "Cyber security systems, defence surveillance technologies, secure communication and data privacy solutions."
-},
+      <div className="text-center mb-12">
+        <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-2">
+          Innovation Domains
+        </p>
 
-{
-title: "Energy",
-icon: Zap,
-desc: "Renewable energy technologies, smart grids, energy storage systems and energy efficient devices."
-},
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
+          Themes
+        </h2>
+      </div>
 
-{
-title: "Healthcare & Medical Technology",
-icon: HeartPulse,
-desc: "Medical devices, biomedical electronics, telemedicine systems and healthcare monitoring technologies."
-},
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {themes.map((theme, i) => (
+          <ThemeCard
+            key={theme.title}
+            {...theme}
+            delay={i * 0.08}
+          />
+        ))}
+      </div>
 
-{
-title: "Industrial Automation",
-icon: Factory,
-desc: "Robotics, Industry 4.0 systems, IoT automation, instrumentation and automated material handling."
-},
+    </section>
+  );
+};
 
-{
-title: "Smart Mobility",
-icon: Car,
-desc: "Electric vehicles, battery management systems, charging infrastructure, drones and autonomous mobility."
-},
-
-{
-title: "Safety Technologies",
-icon: HardHat,
-desc: "Industrial safety, disaster prevention systems, worker safety equipment and monitoring technologies."
-},
-
-{
-title: "Sustainable Infrastructure",
-icon: HardHat,
-desc: "Smart cities, disaster resistant structures, civil engineering innovations and sustainable infrastructure systems."
-},
-
-{
-title: "Waste Management",
-icon: Recycle,
-desc: "Waste-to-energy systems, recycling technologies, pollution control devices and biodegradable materials."
-},
-
-{
-title: "Open Innovation",
-icon: Lightbulb,
-desc: "Innovative ideas that may not fall under the above themes but demonstrate strong technical creativity."
-}
-
-]
-
-return (
-
-<section className="bg-slate-50 py-20">
-
-<div className="max-w-7xl mx-auto px-6">
-
-<h2 className="text-4xl font-bold text-center text-gray-900">
-SRUJANA 2026 Themes
-</h2>
-
-<p className="text-center text-gray-600 mt-4 max-w-2xl mx-auto">
-Participants can present their projects under the following themes for
-Working Model Exhibition, Poster Presentation and Paper Presentation.
-</p>
-
-<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
-
-{themes.map((theme,index)=>{
-
-const Icon = theme.icon
-
-return(
-
-<div
-key={index}
-className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300"
->
-
-<Icon size={36} className="text-orange-500"/>
-
-<h3 className="text-xl font-semibold mt-4">
-{theme.title}
-</h3>
-
-<p className="text-gray-600 mt-3 text-sm">
-{theme.desc}
-</p>
-
-</div>
-
-)
-
-})}
-
-</div>
-
-</div>
-
-</section>
-
-)
-
-}
+export default ThemesSection;
