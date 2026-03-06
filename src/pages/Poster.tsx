@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import { Download } from "lucide-react";
 
-const POSTER_URL = "/posters/SRUJANA2026.jpg";
+const POSTER_URL = "/posters/SRUJANA2026.webp";
 
 const Poster = () => {
   return (
