@@ -358,6 +358,7 @@ Pay ₹{totalAmount}
 </div>
 
 </div>
+</div>
 
 <Footer/>
 
