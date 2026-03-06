@@ -1,32 +1,31 @@
 import { useParams, useNavigate } from "react-router-dom";
 
-const EVENTS: any = {
+const EVENTS: Record<string, any> = {
   "working-model": {
     title: "Working Model Exhibition",
     subtitle: "Showcase innovation through real-world prototypes",
+    description:
+      "Participants are invited to demonstrate functional engineering models that address real-world challenges through innovation, creativity, and practical implementation.",
 
-    highlights: [
-      "Team Size: Max 4",
-      "Hardware Based",
-      "Individual or Team",
-    ],
+    highlights: ["Team Size: Max 4", "Hardware Based", "Individual or Team"],
 
     registration: {
       eligibility: [
-        "Open to Diploma,Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
+        "Open to Diploma, Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
         "Individual and team participation allowed.",
-        "Interdisciplinary teams are encouraged."
+        "Interdisciplinary teams are encouraged.",
       ],
       process: [
         "Complete the online registration form.",
+        "Provide Working Model title and team member details.",
         "Pay the registration fee (non-refundable).",
-        "Receive confirmation email with Participant ID."
+        "Receive confirmation email with Participant ID.",
       ],
       important: [
         "Only registered teams will be allowed to exhibit.",
         "Spot registrations are not guaranteed.",
-        "One team can present only one model."
-      ]
+        "One team can present only one model.",
+      ],
     },
 
     requirements: {
@@ -36,7 +35,7 @@ const EVENTS: any = {
         "Model must be fully functional (live demonstration required).",
         "Must solve a real-world problem in the given domains.",
         "Clear technical explanation required.",
-        "Should show innovation or improvement."
+        "The project should demonstrate innovation or improvement.",
       ],
       include: [
         "Project Title Display",
@@ -44,231 +43,239 @@ const EVENTS: any = {
         "Technical Explanation",
         "Components List",
         "Cost Estimation",
-        "Future Scope"
+        "Future Scope",
       ],
       recommended: [
         "Block Diagram",
         "Circuit Diagram / Architecture",
         "Flowchart",
-        "Live data or real-time results"
+        "Live data or real-time results",
       ],
-      note: "Pure theoretical projects will not be evaluated."
+      note: "Pure theoretical projects will not be evaluated.",
+      evaluation: [
+        "Innovation & Creativity",
+        "Technical Implementation",
+        "Practical Application",
+        "Demonstration Quality",
+        "Clarity of Explanation",
+      ],
     },
 
     rules: [
       "Model must be original.",
       "Maximum 4 members per team.",
       "Power supply will be provided if required.",
-      "Judges decision will be final."
+      "Judges decision will be final.",
     ],
   },
 
   "paper-presentation": {
     title: "Paper Presentation",
     subtitle: "Present your research to experts",
+    description:
+      "Participants are invited to present innovative research ideas and technical studies in various engineering and technology domains.",
 
-    highlights: [
-      "Team Size: 3",
-      "8 Minutes + 2 Q&A",
-      "IEEE Format Required",
-    ],
+    highlights: ["Team Size: 4", "8 Minutes + 2 Q&A", "IEEE Format Required"],
 
     registration: {
       eligibility: [
-        "Open to Diploma, B-Tech, and M-Tech students.",
-        "Maximum 4 members per team."
+        "Open to Diploma, Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
+        "Individual and team participation allowed.",
+        "Maximum 4 members per team.",
       ],
       process: [
-        "Fill details of Students",
-        "Provide Title",
-        "Pay registration fee.",
-        "confirmation email."
+        "Complete the online registration form.",
+        "Provide paper title and team member details.",
+        "Pay the registration fee (non-refundable).",
+        "Receive a confirmation email with Participant ID.",
       ],
       important: [
-        "Plagiarism leads to immediate rejection.",
-        "Time limit strictly enforced."
-      ]
+        "Plagiarism will lead to immediate rejection.",
+        "Presentation time will be strictly enforced.",
+        "Participants must submit their paper in IEEE format before the presentation.",
+      ],
     },
 
     requirements: {
-      description: "Research-based technical presentation evaluated by experts.",
+      description:
+        "This event focuses on research-based technical presentations evaluated by experts.",
       must: [
         "Paper must follow IEEE format.",
-        "Original research only.",
-        "Clear methodology and results."
+        "The research must be original.",
+        "The presentation must clearly explain the problem, methodology, and results.",
       ],
       include: [
         "Abstract",
         "Introduction",
         "Methodology",
-        "Results",
-        "Conclusion"
+        "Results / Analysis",
+        "Conclusion",
       ],
       recommended: [
-        "Graphs and charts",
-        "Proper references and citations"
+        "Graphs and charts for data representation",
+        "Proper references and citations",
       ],
-      note: ""
+      note: "",
+      evaluation: [
+        "Research originality",
+        "Technical depth",
+        "Presentation clarity",
+        "Quality of analysis",
+        "Response to questions",
+      ],
     },
 
     rules: [
       "Maximum 4 members per team.",
-      "Presentation time strictly limited.",
-      "Judges decision will be final."
+      "Presentation time limit must be followed strictly.",
+      "Participants must bring their presentation (PPT/PDF) on the day of the event.",
+      "Judges’ decision will be final and binding.",
     ],
   },
 
   "poster-presentation": {
     title: "Poster Presentation",
     subtitle: "Communicate ideas visually and effectively",
+    description:
+      "Participants are invited to present research concepts, innovative ideas, and technical solutions through visually engaging posters.",
 
     highlights: [
       "Team Size: 3",
-      "Research Based",
-      "Visual Communication",
+      "Research / Concept-based Poster",
+      "Visual communication of technical ideas",
     ],
 
     registration: {
       eligibility: [
-        "Open to Diploma, B-Tech, and M-Tech students.",
-        "Maximum 4 members per team."
+        "Open to Diploma, Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
+        "Individual and team participation allowed.",
+        "Maximum 3 members per team.",
       ],
       process: [
-        "Submit poster Title.",
-        "Pay registration fee."
+        "Complete the online registration form.",
+        "Submit the poster title and team member details.",
+        "Pay the registration fee (non-refundable).",
+        "Receive a confirmation email with Participant ID.",
       ],
       important: [
-        "Original work only.",
-        "Plagiarism not allowed."
-      ]
+        "Only original work is allowed.",
+        "Plagiarism is strictly prohibited and will lead to disqualification.",
+        "Participants must present and explain their poster during evaluation.",
+      ],
     },
 
     requirements: {
-      description: "Visual representation of research or innovative ideas.",
+      description:
+        "The poster must visually represent research work or innovative technical ideas in a clear and structured format.",
       must: [
-        "Poster must be original.",
-        "Clear explanation during evaluation."
+        "Poster must be original and created by the participants.",
+        "Participants must provide a clear explanation during evaluation.",
       ],
       include: [
         "Title",
         "Problem Statement",
         "Methodology",
         "Results",
-        "Conclusion"
+        "Conclusion",
       ],
       recommended: [
-        "Neat layout",
-        "Readable fonts",
-        "Proper diagrams"
+        "Neat and organized layout",
+        "Readable fonts and proper spacing",
+        "Diagrams, charts, and illustrations",
       ],
-      note: ""
+      note: "",
+      evaluation: [
+        "Clarity of Visual Presentation",
+        "Technical Understanding",
+        "Innovation / Idea Quality",
+        "Poster Design & Structure",
+        "Explanation during Evaluation",
+      ],
     },
 
     rules: [
       "Maximum 3 members per team.",
-      "Poster size as per guidelines.",
-      "Judges decision will be final."
+      "Poster size must follow event guidelines (A1/A0) or PDF/PPT.",
+      "Participants must bring their printed poster or soft copy on the event day.",
+      "Judges’ decision will be final and binding.",
     ],
   },
 
   hackathon: {
     title: "Hackathon",
     subtitle: "Code. Build. Compete.",
+    description:
+      "A high-energy innovation challenge where participants develop technological solutions for real-world problems within 24 hours.",
 
     highlights: [
       "24 Hours",
       "Team Size: Max 4",
-      "Real-world Problems",
+      "Real-world Problem Solving",
     ],
+
+    focusthemes: {
+      description:
+        "The hackathon focuses on selected Sustainable Development Goals (SDGs):",
+      themes: [
+        "Good Health and Well-Being",
+        "Sustainable Cities and Communities",
+        "Affordable and Clean Energy",
+        "Industry, Innovation and Infrastructure",
+      ],
+    },
 
     registration: {
       eligibility: [
-        "Open to Diploma ,B-Tech and M-Tech students.",
-        "Maximum 4 members per team."
+        "Open to Diploma, Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
+        "Individual and team participation allowed.",
+        "Maximum 4 members per team.",
       ],
       process: [
-        "Register team online.",
-        "Submit team details.",
-        "Pay registration fee."
+        "Register your team through the online registration form.",
+        "Submit team member details.",
+        "Pay the registration fee (non-refundable).",
+        "Receive a confirmation email with Participant ID.",
       ],
       important: [
-        "Teams must report on time.",
-        "Late entries will not be allowed."
-      ]
+        "Teams must report on time for the hackathon kickoff.",
+        "Late entries will not be allowed.",
+        "Participants must develop their solutions during the hackathon duration only.",
+      ],
     },
 
     requirements: {
-      description: "Participants must develop solutions during the event duration.",
+      description:
+        "Participants must design and develop a functional solution addressing a real-world problem.",
       must: [
-        "Bring your own laptops.",
-        "Develop solution during hackathon only.",
-        "No pre-built projects allowed."
+        "Participants must bring their own laptops.",
+        "Solutions must be developed during the hackathon.",
+        "Pre-built projects are not allowed.",
       ],
       include: [
         "Working Solution",
-        "Problem explanation",
-        "Demo presentation"
+        "Problem Statement Explanation",
+        "Demo Presentation",
       ],
       recommended: [
-        "Clean UI/UX",
+        "Clean UI/UX design",
         "Scalable solution",
-        "Practical feasibility"
+        "Practical feasibility",
       ],
-      note: ""
+      note: "",
+      evaluation: [
+        "Innovation and Creativity",
+        "Technical Implementation",
+        "Relevance to Hackathon Theme",
+        "Practical Impact",
+        "Quality of Presentation and Demo",
+      ],
     },
 
     rules: [
-      "Internet will be provided.",
-      "Fair play must be maintained.",
-      "Judges decision will be final."
-    ],
-  },
-
-  "industry-interaction": {
-    title: "Industry–Institute Interaction",
-    subtitle: "Connect with industry leaders and experts",
-
-    highlights: [
-      "Interactive Sessions",
-      "Career Guidance",
-      "Live Discussions",
-    ],
-
-    registration: {
-      eligibility: [
-        "Open to Diploma, B-Tech and M-Tech students and Startups.",
-      ],
-      process: [
-        "Register online.",
-        "Pay registration fee.",
-        "Receive session confirmation."
-      ],
-      important: [
-        "Professional conduct mandatory.",
-        "Follow session timings strictly."
-      ]
-    },
-
-    requirements: {
-      description: "Interactive knowledge-sharing session with industry experts.",
-      must: [
-        "Attend full session.",
-        "Participate actively."
-      ],
-      include: [
-        "Relevant questions",
-        "Professional interaction"
-      ],
-      recommended: [
-        "Bring notepad for notes",
-        "Prepare career-related questions"
-      ],
-      note: ""
-    },
-
-    rules: [
-      "Maintain discipline.",
-      "Organizing committee decisions are final."
+      "Internet connectivity will be provided.",
+      "Participants must maintain fair play and ethical conduct.",
+      "Any form of plagiarism or unfair practices will lead to disqualification.",
+      "Judges’ decision will be final and binding.",
     ],
   },
 };
@@ -301,6 +308,9 @@ export default function EventDetails() {
           <div>
             <h1 className="text-4xl font-bold">{event.title}</h1>
             <p className="opacity-80 mt-2">{event.subtitle}</p>
+            {event.description && (
+              <p className="opacity-70 mt-2">{event.description}</p>
+            )}
           </div>
 
           <div className="flex flex-wrap gap-3">
@@ -310,6 +320,18 @@ export default function EventDetails() {
               </span>
             ))}
           </div>
+
+          {event.focusthemes && (
+            <div className="bg-black/30 p-6 rounded-lg space-y-3">
+              <h2 className="text-2xl font-semibold">Focus Themes</h2>
+              <p>{event.focusthemes.description}</p>
+              <ul className="list-disc pl-6 space-y-1">
+                {event.focusthemes.themes.map((t: string, i: number) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Registration */}
           <div>
@@ -350,6 +372,7 @@ export default function EventDetails() {
             <h2 className="text-2xl font-semibold mb-4">Requirements</h2>
 
             <div className="space-y-6 bg-black/30 p-6 rounded-lg">
+
               {event.requirements.description && (
                 <p className="font-medium">{event.requirements.description}</p>
               )}
@@ -380,6 +403,17 @@ export default function EventDetails() {
                   ))}
                 </ul>
               </div>
+
+              {event.requirements.evaluation && (
+                <div>
+                  <h3 className="font-semibold mb-2">Evaluation Criteria</h3>
+                  <ul className="list-disc pl-6 space-y-1">
+                    {event.requirements.evaluation.map((item: string, i: number) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {event.requirements.note && (
                 <p className="text-red-400 font-semibold">
