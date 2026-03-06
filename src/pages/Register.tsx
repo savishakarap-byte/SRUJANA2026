@@ -359,7 +359,7 @@ Pay ₹{totalAmount}
 
 </div>
 </div>
-<div className="mt-16">
+<div className="bg-slate-900 text-white mt-20">
   <Footer/>
 </div>
 
