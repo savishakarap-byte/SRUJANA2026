@@ -359,8 +359,9 @@ Pay ₹{totalAmount}
 
 </div>
 </div>
-
-<Footer/>
+<div className="mt-16">
+  <Footer/>
+</div>
 
 <style>{`
 .input-modern{
@@ -373,6 +374,10 @@ background:#ffffff;
 }
 .input-modern::placeholder{
 color:#475569;
+}
+footer{
+background:#020617;
+color:white;
 }
 `}</style>
 
