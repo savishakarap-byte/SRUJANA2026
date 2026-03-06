@@ -336,7 +336,7 @@ onChange={()=>setAgreed(!agreed)}
 
 <span>
 I agree to the{" "}
-<Link to="/terms" className="underline text-indigo-600">
+<Link to="/terms-and-conditions" className="underline text-indigo-600">
 Terms & Conditions
 </Link>{" "}
 and{" "}
