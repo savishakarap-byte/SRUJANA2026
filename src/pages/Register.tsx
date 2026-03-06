@@ -25,7 +25,7 @@ const eventPrices: Record<string, number> = {
 export default function Register() {
 
   const [participationType, setParticipationType] = useState("Individual");
-  const [teamCount, setTeamCount] = useState(2);
+const [teamCount, setTeamCount] = useState(3);
   const [selectedEvent, setSelectedEvent] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -35,13 +35,13 @@ export default function Register() {
   const [emailError, setEmailError] = useState("");
 
   const participants =
-    participationType === "Individual" ? 1 : teamCount;
+  participationType === "Individual" ? 1 : teamCount;
 
-  const feePerPerson = eventPrices[selectedEvent] || 0;
-  const totalAmount = participants * feePerPerson;
-  const razorpayFeePercent = 2.36;
-  const transactionFee = totalAmount * (razorpayFeePercent / 100);
-  const finalAmount = totalAmount + transactionFee;
+const totalAmount = participationType === "Individual" ? 200 : 500;
+
+const razorpayFeePercent = 2.36;
+const transactionFee = totalAmount * (razorpayFeePercent / 100);
+const finalAmount = totalAmount + transactionFee;
 
   const showTitleField =
     selectedEvent === "Working model exhibition" ||
@@ -52,7 +52,7 @@ export default function Register() {
     setSubmitted(false);
     setRegistrationId("");
     setParticipationType("Individual");
-    setTeamCount(2);
+    setTeamCount(3);
     setSelectedEvent("");
     setAgreed(false);
   };
@@ -117,7 +117,7 @@ export default function Register() {
       department: form.department.value,
       members,
       totalParticipants: participants,
-      feePerPerson,
+feePerPerson: participationType === "Individual" ? 200 : 500,
       totalAmount,
       paymentId,
     };
@@ -280,7 +280,6 @@ value={teamCount}
 onChange={(e)=>setTeamCount(Number(e.target.value))}
 className="input-modern"
 >
-<option value={2}>Team Size 2</option>
 <option value={3}>Team Size 3</option>
 <option value={4}>Team Size 4</option>
 </select>
