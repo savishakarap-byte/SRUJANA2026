@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import HeroSlider from "@/components/HeroSlider";
+import ThemesSection from "../components/ThemesSection";
 import EventsSection from "@/components/EventsSection";
 import HighlightsSection from "@/components/HighlightsSection";
 import Footer from "@/components/Footer";
@@ -93,7 +94,10 @@ SRUJANA is your stage to turn innovation into nation-building.
           </p>
         </div>
       </section>
-
+{/* ThemeSection */}
+      <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
+<ThemesSection />
+      </section>
     
       {/* Events */}
       <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
