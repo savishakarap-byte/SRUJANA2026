@@ -176,7 +176,15 @@ feePerPerson: participationType === "Individual" ? 200 : 500,
           <CheckCircle className="mx-auto mb-3 text-green-600" size={48}/>
           <h2 className="text-2xl font-bold text-gray-900">Registration Successful</h2>
           <p className="mt-2 text-gray-700">Registration ID: {registrationId}</p>
-
+<p className="mt-3 text-sm text-gray-600">
+  For any queries contact:
+  <br />
+  📧 <a href="mailto:savishkarandhrapradesh@gmail.com" className="text-indigo-600 underline">savishkarandhrapradesh@gmail.com</a>
+  <br />
+  📞 <a href="tel:+91 93919 05274" className="text-indigo-600 underline">+91 93919 05274</a>
+    <br />
+  📞 <a href="tel:+91 72889 48217" className="text-indigo-600 underline">+91 72889 48217</a>
+</p>
           <button
             onClick={resetForm}
             className="mt-6 px-6 py-2 bg-indigo-600 text-white rounded-lg"
