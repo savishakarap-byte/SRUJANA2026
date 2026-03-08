@@ -279,16 +279,59 @@ const EVENTS: Record<string, any> = {
     ],
   },
   "industry-interaction": {
-    title: "Industry & Institute Intrection",
-    subtitle: "Code. Build. Compete.",
-    description:
-      "A high-energy innovation challenge where participants develop technological solutions for real-world problems within 24 hours.",
+  title: "Industry & Institute Interaction",
+  subtitle: "Meet Experts From Industry",
+  description:
+    "A special interactive session where students engage directly with industry professionals, entrepreneurs, and innovators to understand real-world challenges, career opportunities, and emerging technologies.",
 
-    highlights: [
-      "FREE Registration",
-      "Team Size: Max 4",
-      "Interaction Top Industrialists",
-    ],},
+  highlights: [
+    "FREE Registration",
+    "Industry Expert Interaction",
+    "Career Guidance Session",
+  ],
+
+  registration: {
+    eligibility: [
+      "Open to Diploma, Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
+      "Individual participation preferred.",
+      "Students interested in industry exposure are encouraged.",
+    ],
+    process: [
+      "Complete the online registration form.",
+      "Select Industry Interaction event.",
+      "Receive confirmation email with Participant ID.",
+    ],
+    important: [
+      "Seats are limited and will be allocated on first-come basis.",
+      "Participants must report before the session starts.",
+    ],
+  },
+
+  requirements: {
+    description:
+      "Participants should actively engage with industry experts during the session.",
+    must: [
+      "Participants must carry their registration confirmation.",
+      "Participants must follow event schedule.",
+    ],
+    include: [
+      "Active participation in discussion",
+      "Interaction with speakers",
+    ],
+    recommended: [
+      "Prepare questions for industry experts",
+      "Bring notebook for key insights",
+    ],
+    note: "",
+    evaluation: [],
+  },
+
+  rules: [
+    "Participants must maintain discipline during the session.",
+    "Mobile phones should be kept in silent mode.",
+    "Respect speakers and fellow participants.",
+  ],
+},
 };
 
 export default function EventDetails() {
