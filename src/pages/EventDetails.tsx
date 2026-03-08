@@ -278,16 +278,16 @@ const EVENTS: Record<string, any> = {
       "Judges’ decision will be final and binding.",
     ],
   },
-   hackathon: {
-    title: "Hackathon",
+  "industry-interaction": {
+    title: "Industry & Institute Intrection",
     subtitle: "Code. Build. Compete.",
     description:
       "A high-energy innovation challenge where participants develop technological solutions for real-world problems within 24 hours.",
 
     highlights: [
-      "24 Hours",
+      "FREE Registration",
       "Team Size: Max 4",
-      "Real-world Problem Solving",
+      "Interaction Top Industrialists",
     ],},
 };
 
