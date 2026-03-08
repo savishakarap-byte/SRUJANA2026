@@ -14,18 +14,10 @@ const eventOptions = [
   "Industry institute interaction",
 ];
 
-const eventPrices: Record<string, number> = {
-  "Working model exhibition": 2,
-  "Paper presentation": 1,
-  "Poster presentation": 1,
-  "Hackathon": 1,
-  "Industry institute interaction": 1,
-};
-
 export default function Register() {
 
   const [participationType, setParticipationType] = useState("Individual");
-const [teamCount, setTeamCount] = useState(3);
+  const [teamCount, setTeamCount] = useState(3);
   const [selectedEvent, setSelectedEvent] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -35,13 +27,24 @@ const [teamCount, setTeamCount] = useState(3);
   const [emailError, setEmailError] = useState("");
 
   const participants =
-  participationType === "Individual" ? 1 : teamCount;
+    participationType === "Individual" ? 1 : teamCount;
 
-const totalAmount = participationType === "Individual" ? 200 : 500;
+  const isFreeEvent =
+    selectedEvent === "Industry institute interaction";
 
-const razorpayFeePercent = 2.36;
-const transactionFee = totalAmount * (razorpayFeePercent / 100);
-const finalAmount = totalAmount + transactionFee;
+  const totalAmount =
+    isFreeEvent
+      ? 0
+      : participationType === "Individual"
+      ? 200
+      : 500;
+
+  const razorpayFeePercent = 2.36;
+
+  const transactionFee =
+    totalAmount > 0 ? totalAmount * (razorpayFeePercent / 100) : 0;
+
+  const finalAmount = totalAmount + transactionFee;
 
   const showTitleField =
     selectedEvent === "Working model exhibition" ||
@@ -96,13 +99,17 @@ const finalAmount = totalAmount + transactionFee;
     const members: any[] = [];
 
     if (participationType === "Team") {
+
       for (let i = 0; i < teamCount - 1; i++) {
+
         members.push({
           name: form[`memberName${i}`].value,
           mobile: form[`memberMobile${i}`].value,
           department: form[`memberDept${i}`].value,
         });
+
       }
+
     }
 
     const payload = {
@@ -117,9 +124,9 @@ const finalAmount = totalAmount + transactionFee;
       department: form.department.value,
       members,
       totalParticipants: participants,
-feePerPerson: participationType === "Individual" ? 200 : 500,
+      feePerPerson: totalAmount,
       totalAmount,
-      paymentId,
+      paymentId: paymentId || "FREE_EVENT",
     };
 
     try {
@@ -133,12 +140,16 @@ feePerPerson: participationType === "Individual" ? 200 : 500,
       const data = await res.json();
 
       if (data.status === "success") {
+
         setRegistrationId(data.registrationId);
         setSubmitted(true);
+
       }
 
     } catch {
+
       alert("Network error.");
+
     }
 
     setLoading(false);
@@ -166,44 +177,90 @@ feePerPerson: participationType === "Individual" ? 200 : 500,
       return;
     }
 
-    handlePayment(form);
+    if (isFreeEvent) {
+
+      await submitToBackend("FREE_EVENT", form);
+
+    } else {
+
+      handlePayment(form);
+
+    }
+
   };
 
   if (submitted) {
+
     return (
+
       <div className="min-h-screen flex items-center justify-center bg-slate-100">
+
         <div className="bg-white p-10 rounded-xl shadow-xl text-center max-w-md">
+
           <CheckCircle className="mx-auto mb-3 text-green-600" size={48}/>
-          <h2 className="text-2xl font-bold text-gray-900">Registration Successful</h2>
-          <p className="mt-2 text-gray-700">Registration ID: {registrationId}</p>
-<p className="mt-3 text-sm text-gray-600">
-  For any queries contact:
-  <br />
-  📧 <a href="mailto:savishkarandhrapradesh@gmail.com" className="text-indigo-600 underline">savishkarandhrapradesh@gmail.com</a>
-  <br />
-  📞 <a href="tel:+91 93919 05274" className="text-indigo-600 underline">+91 93919 05274</a>
-    <br />
-  📞 <a href="tel:+91 72889 48217" className="text-indigo-600 underline">+91 72889 48217</a>
-</p>
+
+          <h2 className="text-2xl font-bold text-gray-900">
+            Registration Successful
+          </h2>
+
+          <p className="mt-2 text-gray-700">
+            Registration ID: {registrationId}
+          </p>
+
+          <p className="mt-3 text-sm text-gray-600">
+
+            For any queries contact:
+
+            <br/>
+
+            📧
+            <a href="mailto:savishkarandhrapradesh@gmail.com"
+            className="text-indigo-600 underline">
+            savishkarandhrapradesh@gmail.com
+            </a>
+
+            <br/>
+
+            📞
+            <a href="tel:+919391905274"
+            className="text-indigo-600 underline">
+            +91 93919 05274
+            </a>
+
+            <br/>
+
+            📞
+            <a href="tel:+917288948217"
+            className="text-indigo-600 underline">
+            +91 72889 48217
+            </a>
+
+          </p>
+
           <button
             onClick={resetForm}
             className="mt-6 px-6 py-2 bg-indigo-600 text-white rounded-lg"
           >
             Back to Registration
           </button>
+
         </div>
+
       </div>
+
     );
+
   }
 
   return (
 
 <div className="min-h-screen pt-24 bg-slate-100 flex flex-col">
-  <div className="flex-grow">
+
+<div className="flex-grow">
 
 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 p-6">
 
-{/* LEFT SIDE INSTRUCTIONS */}
+{/* LEFT SIDE */}
 
 <div className="bg-white p-8 rounded-xl shadow">
 
@@ -224,15 +281,13 @@ Registration Instructions
 
 </ul>
 
-{/* Mobile scroll indicator */}
-
 <div className="md:hidden mt-6 text-center text-indigo-600 font-medium">
 ⬇ Scroll down to registration
 </div>
 
 </div>
 
-{/* RIGHT SIDE FORM */}
+{/* RIGHT SIDE */}
 
 <div className="bg-white p-8 rounded-xl shadow">
 
@@ -248,13 +303,14 @@ value={selectedEvent}
 onChange={(e)=>setSelectedEvent(e.target.value)}
 className="input-modern"
 >
+
 <option value="">Select Event</option>
+
 {eventOptions.map(e=>(
 <option key={e}>{e}</option>
 ))}
-</select>
 
-{/* Participation Type */}
+</select>
 
 <div className="flex gap-3">
 
@@ -289,8 +345,10 @@ value={teamCount}
 onChange={(e)=>setTeamCount(Number(e.target.value))}
 className="input-modern"
 >
+
 <option value={3}>Team Size 3</option>
 <option value={4}>Team Size 4</option>
+
 </select>
 
 )}
@@ -306,20 +364,24 @@ className="input-modern"
 <input name="department" required placeholder="Department" className="input-modern"/>
 
 {showTitleField && (
+
 <input
 name="title"
 required
 placeholder="Title of Project / Poster / Paper"
 className="input-modern"
 />
+
 )}
 
 {participationType==="Team" && (
 
 <>
+
 <input name="teamName" placeholder="Team Name" className="input-modern"/>
 
 {[...Array(teamCount-1)].map((_,i)=>(
+
 <div key={i} className="grid grid-cols-3 gap-2">
 
 <input name={`memberName${i}`} placeholder="Member Name" className="input-modern"/>
@@ -329,6 +391,7 @@ className="input-modern"
 <input name={`memberDept${i}`} placeholder="Department" className="input-modern"/>
 
 </div>
+
 ))}
 
 </>
@@ -343,14 +406,19 @@ onChange={()=>setAgreed(!agreed)}
 />
 
 <span>
+
 I agree to the{" "}
+
 <Link to="/terms-and-conditions" className="underline text-indigo-600">
 Terms & Conditions
-</Link>{" "}
-and{" "}
+</Link>
+
+{" "}and{" "}
+
 <Link to="/refund-policy" className="underline text-indigo-600">
 Refund Policy
 </Link>.
+
 </span>
 
 </div>
@@ -358,7 +426,9 @@ Refund Policy
 <button
 type="submit"
 className="w-full py-3 bg-indigo-600 text-white rounded-lg">
-Pay ₹{totalAmount}
+
+{isFreeEvent ? "Register Free" : `Pay ₹${totalAmount}`}
+
 </button>
 
 </form>
@@ -367,8 +437,9 @@ Pay ₹{totalAmount}
 
 </div>
 </div>
+
 <div className="bg-slate-900 text-white mt-20">
-  <Footer/>
+<Footer/>
 </div>
 
 <style>{`
@@ -390,5 +461,7 @@ color:white;
 `}</style>
 
 </div>
+
   );
+
 }
