@@ -209,7 +209,8 @@ export default function Srujana2026Details() {
       {/* Contact */}
       <section>
         <h2 className="text-2xl font-semibold mb-3">Contact</h2>
-        <p>Email: info@srujana.org</p>
+        <p>Email: savishkarandhrapradesh@gmail.com
+</p>
         <p>Technical Cell – SRUJANA 2026</p>
       </section>
 
