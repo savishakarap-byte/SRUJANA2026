@@ -1,10 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 
 const ITEMS = [
-  { label: "Supported By", src: "/sponsor1.png" },
-  { label: "Supported By", src: "/sponsor2.png" },
-  { label: "Supported By", src: "/sponsor3.png" },
-  { label: "Institutional Partner", src: "/bits-logo.png" },
+  { label: "Organizing By", src: "/technicalcell.png" },
+  { label: "Organizing By", src: "/savishkar.png" },
+  { label: "Organizing By", src: "/abvp.png" },
+  { label: "Asociated With", src: "/vvs.png" },
+   { label: "Asociated With", src: "/svpec.png" },
+  { label: "Supported By", src: "/aicte.png" },
+  { label: "Supported By", src: "/apsche.png" },
+  { label: "Supported By", src: "/apmsme.png" },
+  { label: "Supported By", src: "/apis.png" },
+  { label: "Supported By", src: "/rtih.png" },
+  { label: "Supported By", src: "/iste.png" },
+
+  
 ];
 
 const SupportedBy = () => {
