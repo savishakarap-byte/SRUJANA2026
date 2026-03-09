@@ -7,6 +7,8 @@ const navLinks = [
   { label: "Register", path: "/register" },
   { label: "Poster", path: "/poster" },
   { label: "Brochure", path: "/brochure" },
+  { label: "Event Details", path: "/srujana2026details" },
+
 ];
 
 const Navbar = () => {
