@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Poster from "./pages/Poster";
 import Brochure from "./pages/Brochure";
 import EventDetails from "./pages/EventDetails";
+import Srujana2026Details from "./pages/Srujana2026Details";
 import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import NotFound from "./pages/NotFound";
