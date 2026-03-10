@@ -3,46 +3,43 @@ import React, { useState, useEffect } from "react";
 export default function Srujana2026Details() {
 
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [zoom, setZoom] = useState(false);
 
   const events = [
     {
       name: "Working Model Exhibition",
-      poster: "/posters/working-model.jpeg",
-      register: "https://srujana2026.in/register"
+      poster: "/posters/working-model.jpeg"
     },
     {
       name: "Poster Presentation",
-      poster: "/posters/poster-presentation.jpg",
-      register: "https://srujana2026.in/register"
+      poster: "/posters/poster-presentation.jpg"
     },
     {
       name: "Paper Presentation",
-      poster: "/posters/paper-presentation.jpg",
-      register: "https://srujana2026.in/register"
+      poster: "/posters/paper-presentation.jpg"
     },
     {
       name: "Hackathon",
-      poster: "/posters/hackathon.jpg",
-      register: "https://srujana2026.in/register"
+      poster: "/posters/hackathon.jpg"
     },
     {
       name: "Industry – Institute Interaction",
-      poster: "/posters/industry-interaction.jpg",
-      register: "https://srujana2026.in/register"
+      poster: "/posters/industry-interaction.jpg"
     }
   ];
 
-  // ESC key close modal
+  // Close modal with ESC
   useEffect(() => {
-    const close = (e) => {
+    const handleKey = (e) => {
       if (e.key === "Escape") {
         setSelectedEvent(null);
+        setZoom(false);
       }
     };
 
-    window.addEventListener("keydown", close);
+    window.addEventListener("keydown", handleKey);
 
-    return () => window.removeEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
   return (
@@ -55,21 +52,21 @@ export default function Srujana2026Details() {
 
 
       {/* Event Buttons */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         {events.map((event, index) => (
           <button
             key={index}
             onClick={() => setSelectedEvent(event)}
-            className="group bg-white/80 backdrop-blur border rounded-xl p-6 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 text-left"
+            className="group bg-white border rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 text-left"
           >
 
-            <h3 className="text-lg font-semibold text-blue-900">
+            <h3 className="text-lg font-semibold text-blue-900 group-hover:text-blue-700">
               {index + 1}. {event.name}
             </h3>
 
-            <p className="text-sm text-gray-500 mt-2 group-hover:text-blue-700">
-              Click to view poster
+            <p className="text-sm text-gray-500 mt-2">
+              Click to view event poster
             </p>
 
           </button>
@@ -78,53 +75,70 @@ export default function Srujana2026Details() {
       </div>
 
 
-      {/* Modal */}
+
+      {/* Poster Modal */}
       {selectedEvent && (
 
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-6"
-          onClick={() => setSelectedEvent(null)}
+          className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          onClick={() => {
+            setSelectedEvent(null);
+            setZoom(false);
+          }}
         >
 
-          {/* Modal Card */}
           <div
-            className="relative bg-white rounded-xl shadow-2xl max-w-4xl w-full p-6 animate-fadeIn"
+            className="relative bg-white rounded-xl shadow-2xl max-w-4xl w-full p-6 animate-fade"
             onClick={(e) => e.stopPropagation()}
           >
 
-            {/* Close */}
+            {/* Close Button */}
             <button
-              onClick={() => setSelectedEvent(null)}
-              className="absolute top-4 right-5 text-3xl font-bold text-gray-500 hover:text-black"
+              onClick={() => {
+                setSelectedEvent(null);
+                setZoom(false);
+              }}
+              className="absolute top-3 right-4 text-2xl font-bold text-gray-600 hover:text-black"
             >
               ×
             </button>
 
-            {/* Event Name */}
+            {/* Title */}
             <h2 className="text-2xl font-semibold text-center mb-6">
               {selectedEvent.name}
             </h2>
 
+
             {/* Poster */}
-            <div className="overflow-hidden rounded-lg">
+            <div className="overflow-auto max-h-[75vh]">
 
               <img
                 src={selectedEvent.poster}
                 alt={selectedEvent.name}
-                className="mx-auto rounded-lg shadow-lg max-h-[75vh] transition duration-300 hover:scale-105"
+                onClick={() => setZoom(!zoom)}
+                className={`mx-auto rounded-lg shadow-lg cursor-zoom-in transition duration-300 ${
+                  zoom ? "scale-125" : "scale-100"
+                }`}
               />
 
             </div>
 
 
-            {/* Register Button */}
-            <div className="text-center mt-8">
+            {/* Controls */}
+            <div className="flex justify-center gap-4 mt-6">
+
+              <button
+                onClick={() => setZoom(!zoom)}
+                className="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300"
+              >
+                {zoom ? "Reset Zoom" : "Zoom Poster"}
+              </button>
 
               <a
-                href={selectedEvent.register}
+                href="https://srujana2026.in/register"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-blue-900 text-white px-8 py-3 rounded-lg shadow hover:bg-blue-800 transition"
+                className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
               >
                 Register Now
               </a>
