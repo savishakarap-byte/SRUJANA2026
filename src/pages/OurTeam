@@ -4,15 +4,15 @@ export default function OurTeam() {
 
   const organizingCommittee = [
     {
-      name: "Dr. Ramesh Kumar",
-      designation: "Professor & Head, Electrical Engineering",
-      college: "University College of Engineering, ANU",
-      photo: "/team/ramesh.jpg"
+      name: "Prof. M.Nagaphani Shastry",
+      designation: "Department Of Mechanical Engineering",
+      college: "Pulla Reddy College of Engineering,Kurnool",
+      photo: "/team/nagaphani.jpg"
     },
     {
-      name: "Dr. Lakshmi Devi",
-      designation: "Associate Professor, Mechanical Engineering",
-      college: "University College of Engineering, ANU",
+      name: "Dr. Amarendra Reddy",
+      designation: "HoD & Asst.Prof.,Department of School of Sciences",
+      college: "National Institute of Technology",
       photo: "/team/lakshmi.jpg"
     }
   ];
