@@ -8,27 +8,27 @@ export default function Srujana2026Details() {
     {
       name: "Working Model Exhibition",
       poster: "/posters/working-model.jpg",
-      register: "https://forms.google.com"
+      register: "https://srujana2026.in/register"
     },
     {
       name: "Poster Presentation",
       poster: "/posters/poster-presentation.jpg",
-      register: "https://forms.google.com"
+      register: "https://srujana2026.in/register"
     },
     {
       name: "Paper Presentation",
       poster: "/posters/paper-presentation.jpg",
-      register: "https://forms.google.com"
+      register: "https://srujana2026.in/register"
     },
     {
       name: "Hackathon",
       poster: "/posters/hackathon.jpg",
-      register: "https://forms.google.com"
+      register: "https://srujana2026.in/register"
     },
     {
       name: "Industry – Institute Interaction",
       poster: "/posters/industry-interaction.jpg",
-      register: "https://forms.google.com"
+      register: "https://srujana2026.in/register"
     }
   ];
 
