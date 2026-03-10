@@ -10,6 +10,7 @@ import Poster from "./pages/Poster";
 import Brochure from "./pages/Brochure";
 import EventDetails from "./pages/EventDetails";
 import Srujana2026Details from "./pages/Srujana2026Details";
+import OurTeam from "./pages/OurTeam";
 import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import NotFound from "./pages/NotFound";
@@ -29,7 +30,7 @@ const App = () => (
           <Route path="/poster" element={<Poster />} />
           <Route path="/brochure" element={<Brochure />} />
            <Route path="/srujana2026details" element={<Srujana2026Details />} />
-
+            <Route path="/team" element={<OurTeam />} />
           <Route path="/event/:slug" element={<EventDetails />} />
           <Route path="/terms-and-conditions" element={<Terms />} />
 <Route path="/refund-policy" element={<Refund />} />
