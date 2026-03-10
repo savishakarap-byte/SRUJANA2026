@@ -104,7 +104,7 @@ export default function Srujana2026Details() {
             </button>
 
             {/* Title */}
-            <h2 className="text-2xl font-semibold text-center mb-6">
+            <h2 className="text-2xl font-bold text-black text-center mb-6">
               {selectedEvent.name}
             </h2>
 
@@ -129,8 +129,7 @@ export default function Srujana2026Details() {
 
               <button
                 onClick={() => setZoom(!zoom)}
-                className="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300"
-              >
+            className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-500"              >
                 {zoom ? "Reset Zoom" : "Zoom Poster"}
               </button>
 
@@ -138,8 +137,7 @@ export default function Srujana2026Details() {
                 href="https://srujana2026.in/register"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
-              >
+             className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-500"              >
                 Register Now
               </a>
 
