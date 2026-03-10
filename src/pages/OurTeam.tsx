@@ -67,17 +67,25 @@ export default function OurTeam() {
       photo: "/team/mohan.jpg"
     },
     {
-      name: "Manikanta",
-      college: "Aditya University",
-      phone: "9542945770",
-      photo: "/team/manikanta.jpg"
-    },
-    {
       name: "Hemanth",
       college: "M-Tech in Andhra University",
       phone: "7288948217",
       photo: "/team/hemanth.jpg"
     },
+ {
+      name: "Gangadhar",
+      college: "Acharya Nagarjuna University",
+      phone: "7036590780",
+      photo: "/team/gangadhar.jpg"
+    },
+
+     {
+      name: "Harsha",
+      college: "Jawaharlal Nehru Technological University",
+      phone: "6309707627",
+      photo: "/team/harsha.jpg"
+    },
+    
     {
       name: "Bhanu",
       college: "Raghu College of Engineering",
@@ -102,18 +110,8 @@ export default function OurTeam() {
       phone: "6304053360",
       photo: "/team/siddartha.jpg"
     },
-    {
-      name: "Harsha",
-      college: "Jawaharlal Nehru Technological University",
-      phone: "6309707627",
-      photo: "/team/harsha.jpg"
-    },
-    {
-      name: "Gangadhar",
-      college: "Acharya Nagarjuna University",
-      phone: "7036590780",
-      photo: "/team/gangadhar.jpg"
-    },
+   
+   
     {
       name: "Sai",
       college: "Jawaharlal Nehru Technological University",
@@ -137,6 +135,12 @@ export default function OurTeam() {
       college: "Geetam University",
       phone: "6304365959",
       photo: "/team/vamsi.jpg"
+    },
+    {
+      name: "Manikanta",
+      college: "Aditya University",
+      phone: "9542945770",
+      photo: "/team/manikanta.jpg"
     }
   ];
 
