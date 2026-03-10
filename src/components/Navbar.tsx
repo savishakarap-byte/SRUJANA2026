@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Poster", path: "/poster" },
   { label: "Brochure", path: "/brochure" },
   { label: "Event Details", path: "/srujana2026details" },
+  { label: "Our Team", path: "/team" },
 
 ];
 
