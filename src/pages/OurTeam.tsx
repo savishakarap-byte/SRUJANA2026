@@ -201,15 +201,15 @@ export default function OurTeam() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-16">
 
-      <h1 className="text-4xl font-bold text-center text-blue-900 mb-16">
+       <h1 className="text-4xl font-extrabold text-center text-blue-900 mb-16 tracking-wide">
         Our Team
       </h1>
 
       <section className="mb-20">
 
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold text-gray-900">
-            Organizing Committee
+<h2 className="text-2xl font-bold text-blue-900">
+  Organizing Committee
           </h2>
 
           <div className="w-20 h-1 bg-orange-500 mx-auto mt-3 rounded"></div>
@@ -226,8 +226,8 @@ export default function OurTeam() {
       <section>
 
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold text-gray-900">
-            Student Coordinators
+<h2 className="text-2xl font-bold text-blue-900">
+  Student Coordinators
           </h2>
 
           <div className="w-20 h-1 bg-orange-500 mx-auto mt-3 rounded"></div>
