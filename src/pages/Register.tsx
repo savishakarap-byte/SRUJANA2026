@@ -280,6 +280,8 @@ Registration Instructions
 <li>• Keep your registration ID for reference.</li>
 
 </ul>
+<h2 className="text-2xl font-bold mb-4 text-red-600">
+The registration fee includes event entry, food and accommodation for three days, an official participant ID card, and event participation materials.</h2>
 
 <div className="md:hidden mt-6 text-center text-indigo-600 font-medium">
 ⬇ Scroll down to registration
