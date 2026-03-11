@@ -79,7 +79,7 @@ const Index = () => {
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">About the Fest</p>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">What is SRUJANA?</h2>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-            SRUJANA 2026 is a state-level innovation fest hosted at Baba Institute of Technology & Sciences (SVPEC), Visakhapatnam, organized by Savishkar Andhra Pradesh.
+            SRUJANA 2026 is a state-level innovation fest hosted at Sanketika Vidya Parishad Engineering College (SVPEC), Visakhapatnam, organized by Savishkar Andhra Pradesh.
 Driven by the core motto “From Innovation to Nation Building — Towards Viksit Bharat 2047”
 SRUJANA 2026 brings together students, researchers, and young innovators from across Andhra Pradesh on a single platform to transform ideas into real-world impact.
 The fest features:
