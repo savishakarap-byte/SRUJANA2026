@@ -73,40 +73,50 @@ const Index = () => {
 </section>
        
 
-      {/* About */}
-      <section id="about" className="section-fade-in container mx-auto px-4 md:px-6 py-20 md:py-28">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">About the Fest</p>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">What is SRUJANA?</h2>
-          <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-            SRUJANA 2026 is a State-Level Innovation and Technical Fest hosted at Sanketika Vidya Parishad Engineering College (SVPEC), Visakhapatnam.
+     {/* About */}
+<section id="about" className="section-fade-in container mx-auto px-4 md:px-6 py-20 md:py-28">
+  <div className="max-w-4xl mx-auto text-center">
 
-Guided by the vision “From Innovation to Nation Building — Towards Viksit Bharat 2047,” SRUJANA 2026 brings together students, researchers, and young innovators from across Andhra Pradesh on a common platform to showcase ideas, exchange knowledge, and develop impactful technological solutions.
+    <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">
+About SRUJANA 2026
+    </p>
 
-The event is organized by the Technical Cell Andhra Pradesh, Savishkar Andhra Pradesh, and Akhil Bharatiya Vidyarthi Parishad (ABVP), in association with Vidyarthi Vikas Samithi (VVS) and Sanketika Vidya Parishad Engineering College (SVPEC).
+    <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">
+      What is SRUJANA?
+    </h2>
 
-The program is supported by All India Council for Technical Education (AICTE), Andhra Pradesh State Council of Higher Education (APSCHE), Andhra Pradesh Micro, Small and Medium Enterprises Development Corporation (APMSME), Andhra Pradesh Innovation Society (APIS), Indian Society for Technical Education (ISTE), and Right to Information Foundation of India (RTIH).
+    <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6">
+      <strong>SRUJANA 2026</strong> is a State-Level Innovation and Technical Fest hosted at 
+      Sanketika Vidya Parishad Engineering College (SVPEC), Visakhapatnam.
+      Guided by the vision <em>“From Innovation to Nation Building — Towards Viksit Bharat 2047,”</em> 
+      the fest brings together students, researchers, and young innovators from across Andhra Pradesh 
+      to showcase ideas, exchange knowledge, and build solutions for real-world challenges.
+    </p>
 
-SRUJANA 2026 promotes hands-on learning, interdisciplinary collaboration, and innovation-driven problem solving, encouraging participants to address real-world challenges and contribute to India’s journey toward a Viksit Bharat by 2047.
+    <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10">
+      The event is organized by <strong>Technical Cell Andhra Pradesh, Savishkar Andhra Pradesh, 
+      and ABVP</strong>, in association with <strong>VVS and SVPEC</strong>, with support from 
+      AICTE, APSCHE, APMSME, APIS, ISTE, and RTIH.
+    </p>
 
-The fest features a variety of technical events, including:
+    {/* Events */}
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm md:text-base text-foreground font-medium">
+      <div className="bg-secondary p-4 rounded-lg">⚙️ Working Model Exhibition</div>
+      <div className="bg-secondary p-4 rounded-lg">💻 Hackathon</div>
+      <div className="bg-secondary p-4 rounded-lg">📄 Paper Presentation</div>
+      <div className="bg-secondary p-4 rounded-lg">🖼 Poster Presentation</div>
+      <div className="bg-secondary p-4 rounded-lg col-span-2 md:col-span-1">
+        🤝 Industry–Institute Interaction
+      </div>
+    </div>
 
-⚙️ Working Model Exhibition
+    <p className="text-muted-foreground text-sm mt-8">
+      Note: Domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation 
+      are the same as those listed in the Theme Section below.
+    </p>
 
-💻 Hackathon
-
-📄 Paper Presentation
-
-🖼 Poster Presentation
-
-🤝 Industry–Institute Interaction
-
-*Note: The domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation are the same as those listed in the *Theme Section below. Please scroll down to view the complete list of domains.
-
-Through these activities, SRUJANA 2026 aims to cultivate innovation, research culture, and practical implementation, enabling young minds to transform ideas into solutions that contribute to nation building and technological advancement.
-          </p>
-        </div>
-      </section>
+  </div>
+</section>
 
       {/* Events */}
       <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
