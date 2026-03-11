@@ -79,18 +79,31 @@ const Index = () => {
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">About the Fest</p>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6">What is SRUJANA?</h2>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-            SRUJANA 2026 is a state-level innovation fest hosted at Sanketika Vidya Parishad Engineering College (SVPEC), Visakhapatnam, organized by Savishkar Andhra Pradesh.
-Driven by the core motto “From Innovation to Nation Building — Towards Viksit Bharat 2047”
-SRUJANA 2026 brings together students, researchers, and young innovators from across Andhra Pradesh on a single platform to transform ideas into real-world impact.
-The fest features:
-⚙️ Working Model Exhibitions
-💻 Hackathons
-📄 Paper Presentations
-🖼 Poster Presentations
-🤝 Industry–Institute Interactions
-SRUJANA is built to promote hands-on learning, practical problem solving, and collaborative innovation aligned with India’s vision for a developed nation by 2047.
-Whether you build, code, research, or create —
-SRUJANA is your stage to turn innovation into nation-building.
+            SRUJANA 2026 is a State-Level Innovation and Technical Fest hosted at Sanketika Vidya Parishad Engineering College (SVPEC), Visakhapatnam.
+
+Guided by the vision “From Innovation to Nation Building — Towards Viksit Bharat 2047,” SRUJANA 2026 brings together students, researchers, and young innovators from across Andhra Pradesh on a common platform to showcase ideas, exchange knowledge, and develop impactful technological solutions.
+
+The event is organized by the Technical Cell Andhra Pradesh, Savishkar Andhra Pradesh, and Akhil Bharatiya Vidyarthi Parishad (ABVP), in association with Vidyarthi Vikas Samithi (VVS) and Sanketika Vidya Parishad Engineering College (SVPEC).
+
+The program is supported by All India Council for Technical Education (AICTE), Andhra Pradesh State Council of Higher Education (APSCHE), Andhra Pradesh Micro, Small and Medium Enterprises Development Corporation (APMSME), Andhra Pradesh Innovation Society (APIS), Indian Society for Technical Education (ISTE), and Right to Information Foundation of India (RTIH).
+
+SRUJANA 2026 promotes hands-on learning, interdisciplinary collaboration, and innovation-driven problem solving, encouraging participants to address real-world challenges and contribute to India’s journey toward a Viksit Bharat by 2047.
+
+The fest features a variety of technical events, including:
+
+⚙️ Working Model Exhibition
+
+💻 Hackathon
+
+📄 Paper Presentation
+
+🖼 Poster Presentation
+
+🤝 Industry–Institute Interaction
+
+*Note: The domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation are the same as those listed in the *Theme Section below. Please scroll down to view the complete list of domains.
+
+Through these activities, SRUJANA 2026 aims to cultivate innovation, research culture, and practical implementation, enabling young minds to transform ideas into solutions that contribute to nation building and technological advancement.
           </p>
         </div>
       </section>
