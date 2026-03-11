@@ -140,7 +140,7 @@ const EVENTS: Record<string, any> = {
       "Participants are invited to present research concepts, innovative ideas, and technical solutions through visually engaging posters.",
 
     highlights: [
-      "Team Size: 3",
+      "Team Size: 3 - 4",
       "Research / Concept-based Poster",
       "Visual communication of technical ideas",
     ],
@@ -149,7 +149,7 @@ const EVENTS: Record<string, any> = {
       eligibility: [
         "Open to Diploma, Undergraduate (B.Tech), and Postgraduate (M.Tech) students.",
         "Individual and team participation allowed.",
-        "Maximum 3 members per team.",
+        "Maximum 4 members per team.",
       ],
       process: [
         "Complete the online registration form.",
@@ -194,8 +194,8 @@ const EVENTS: Record<string, any> = {
     },
 
     rules: [
-      "Maximum 3 members per team.",
-      "Poster size must follow event guidelines (A1/A0) or PDF/PPT.",
+      "Maximum 4 members per team.",
+      "Poster size must follow event guidelines (3feet Width x 4 feet Height) or PDF/PPT.",
       "Participants must bring their printed poster or soft copy on the event day.",
       "Judges’ decision will be final and binding.",
     ],
