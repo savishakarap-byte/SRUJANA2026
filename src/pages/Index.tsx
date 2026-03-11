@@ -110,9 +110,9 @@ About SRUJANA 2026
       </div>
     </div>
 
-    <p className="text-muted-foreground text-sm mt-8">
-      Note: Domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation 
-      are the same as those listed in the Theme Section below.
+<p className="text-red-600 text-base mt-8">
+ <strong> Note: Domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation 
+      are the same as those listed in the Theme Section below. </strong>
     </p>
 
   </div>
