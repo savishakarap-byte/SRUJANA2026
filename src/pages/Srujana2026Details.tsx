@@ -8,7 +8,7 @@ export default function Srujana2026Details() {
   const events = [
     {
       name: "Working Model Exhibition",
-      poster: "/posters/working-model.jpeg"
+      poster: "/posters/working-model.jpg"
     },
     {
       name: "Poster Presentation",
