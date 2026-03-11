@@ -71,14 +71,17 @@ const Index = () => {
   </div>
 
 </section>
-       <section id="note" className="section-fade-in container mx-auto px-4 md:px-6 py-20 md:py-28">
-  <div className="max-w-4xl mx-auto text-center">
-<p className="text-red-600 text-base mt-8">
- <strong> Note: Domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation 
-      are the same as those listed in the Theme Section below. </strong>
-    </p>
-     </div>
+      <section id="note" className="section-fade-in container mx-auto px-4 py-8">
+  <div className="max-w-xl mx-auto text-center">
 
+    <p className="text-red-600 text-base font-medium">
+      <strong>
+        Note: Domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation 
+        are the same as those listed in the Theme Section below.
+      </strong>
+    </p>
+
+  </div>
 </section>
      {/* About */}
 <section id="about" className="section-fade-in container mx-auto px-4 md:px-6 py-20 md:py-28">
@@ -116,11 +119,6 @@ About SRUJANA 2026
         🤝 Industry–Institute Interaction
       </div>
     </div>
-
-<p className="text-red-600 text-base mt-8">
- <strong> Note: Domains for the Working Model Exhibition, Paper Presentation, and Poster Presentation 
-      are the same as those listed in the Theme Section below. </strong>
-    </p>
 
   </div>
 </section>
