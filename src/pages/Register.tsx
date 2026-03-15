@@ -283,7 +283,7 @@ Registration Instructions
 <h2 className="text-2xl font-bold mb-4 text-red-600">
 The registration fee includes event entry, food and accommodation for three days, an official participant ID card, and event participation materials.</h2>
 
-  <h2 className="text-2xl font-bold mb-4 text-orange-600"">
+  <h2 className="text-2xl font-bold mb-4 text-orange-600">
 PRIZE POOL REVISED TO 2LAKH </h2>
 
 <div className="md:hidden mt-6 text-center text-indigo-600 font-medium">
