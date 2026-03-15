@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import HeroSlider from "@/components/HeroSlider";
 import ThemesSection from "../components/ThemesSection";
 import EventsSection from "@/components/EventsSection";
@@ -12,9 +13,49 @@ import SupportedBy from "@/components/SupportedBy";
 import { CalendarDays, MapPin } from "lucide-react";
 
 const Index = () => {
+
   const containerRef = useScrollReveal();
 
-  return (
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    setShowPopup(true);
+  }, []);
+ return (
+  <>
+    {showPopup && (
+      <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4">
+
+        <div className="bg-white rounded-xl shadow-2xl max-w-md w-full text-center p-8 relative">
+
+          <button
+            onClick={() => setShowPopup(false)}
+            className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+          >
+            ✕
+          </button>
+
+        <h2 className="text-2xl font-bold text-red-600 mb-4">
+🚨 SRUJANA 2026 Update
+</h2>
+
+          <p className="text-lg text-gray-700">
+            Prize Pool Revised to
+          </p>
+
+         <p className="text-5xl font-extrabold text-orange-600 mt-2">
+₹2LAKHS
+</p>
+
+          <p className="text-sm text-gray-500 mt-3">
+            Participate in SRUJANA 2026 and win exciting prizes!
+          </p>
+
+        </div>
+      </div>
+    )}
+
+
     <div ref={containerRef}>
       {/* ===== HERO SECTION ===== */}
 <section className="relative h-screen overflow-hidden">
@@ -135,10 +176,10 @@ About SRUJANA 2026
       <section className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
         <HighlightsSection />
       </section>
-
       <Footer />
     </div>
-  );
+  </>
+);
 };
 
 export default Index;
