@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "@/components/Footer";
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -13,7 +13,13 @@ const eventOptions = [
   "Hackathon",
   "Industry institute interaction",
 ];
-
+const eventPricing = {
+  "Working model exhibition": { individual: 200, team: 500 },
+  "Paper presentation": { individual: 200, team: 500 },
+  "Poster presentation": { individual: 200, team: 500 },
+  "Hackathon": { individual: 200, team: 500 },
+  "Industry institute interaction": { individual: 100 }, // ✅ only individual
+};
 export default function Register() {
 
   const [participationType, setParticipationType] = useState("Individual");
@@ -25,19 +31,24 @@ export default function Register() {
   const [agreed, setAgreed] = useState(false);
   const [paymentError, setPaymentError] = useState("");
   const [emailError, setEmailError] = useState("");
+const isOnlyIndividualEvent =
+  selectedEvent === "Industry institute interaction";
+  
+useEffect(() => {
+  if (isOnlyIndividualEvent) {
+    setParticipationType("Individual");
+  }
+}, [selectedEvent]);
 
   const participants =
     participationType === "Individual" ? 1 : teamCount;
 
-  const isFreeEvent =
-    selectedEvent === "Industry institute interaction";
+  
 
-  const totalAmount =
-    isFreeEvent
-      ? 0
-      : participationType === "Individual"
-      ? 200
-      : 500;
+ const totalAmount =
+  eventPricing[selectedEvent]?.[
+    participationType === "Individual" ? "individual" : "team"
+  ] || 0;
 
   const razorpayFeePercent = 2.36;
 
@@ -126,7 +137,7 @@ export default function Register() {
       totalParticipants: participants,
       feePerPerson: totalAmount,
       totalAmount,
-      paymentId: paymentId || "FREE_EVENT",
+paymentId: totalAmount === 0 ? "FREE_EVENT" : paymentId,
     };
 
     try {
@@ -177,15 +188,11 @@ export default function Register() {
       return;
     }
 
-    if (isFreeEvent) {
-
-      await submitToBackend("FREE_EVENT", form);
-
-    } else {
-
-      handlePayment(form);
-
-    }
+   if (totalAmount === 0) {
+  await submitToBackend("FREE_EVENT", form);
+} else {
+  handlePayment(form);
+}
 
   };
 
@@ -331,20 +338,25 @@ Individual
 </button>
 
 <button
-type="button"
-onClick={()=>setParticipationType("Team")}
-className={`flex-1 py-2 rounded font-medium ${
-participationType==="Team"
-? "bg-indigo-600 text-white"
-: "bg-gray-200 text-gray-900"
-}`}>
-Team
+  type="button"
+  disabled={isOnlyIndividualEvent}
+  onClick={() => setParticipationType("Team")}
+  className={`flex-1 py-2 rounded font-medium ${
+    participationType === "Team"
+      ? "bg-indigo-600 text-white"
+      : "bg-gray-200 text-gray-900"
+  } ${isOnlyIndividualEvent ? "opacity-50 cursor-not-allowed" : ""}`}
+>
+  Team
 </button>
-
 </div>
-
-{participationType==="Team" && (
-
+{/* ✅ ADD HERE */}
+{isOnlyIndividualEvent && (
+  <p className="text-sm text-red-500">
+    Only individual participation allowed for this event
+  </p>
+)}
+{participationType==="Team" && !isOnlyIndividualEvent && (
 <select
 value={teamCount}
 onChange={(e)=>setTeamCount(Number(e.target.value))}
@@ -379,8 +391,7 @@ className="input-modern"
 
 )}
 
-{participationType==="Team" && (
-
+{participationType==="Team" && !isOnlyIndividualEvent && (
 <>
 
 <input name="teamName" placeholder="Team Name" className="input-modern"/>
@@ -432,8 +443,7 @@ Refund Policy
 type="submit"
 className="w-full py-3 bg-indigo-600 text-white rounded-lg">
 
-{isFreeEvent ? "Register Free" : `Pay ₹${totalAmount}`}
-
+{totalAmount === 0 ? "Register Free" : `Pay ₹${totalAmount}`}
 </button>
 
 </form>
