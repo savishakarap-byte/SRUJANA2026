@@ -46,7 +46,8 @@ const Index = () => {
          <p className="text-5xl font-extrabold text-orange-600 mt-2">
 ₹2LAKHS
 </p>
-
+<p className="text-lg font-extrabold text-orange-600 mt-2">
+& Participants of any event automatically get access to the Industry–Institute Interaction, while others must register separately.</p>
           <p className="text-sm text-gray-500 mt-3">
             Participate in SRUJANA 2026 and win exciting prizes!
           </p>
