@@ -109,64 +109,86 @@ useEffect(() => {
     rzp.open();
   };
 
+const getValue = (field) => field?.value?.trim() || "";
+
 const submitToBackend = async (paymentId, form) => {
   setLoading(true);
 
-  const members = [];
-
-  if (participationType === "Team") {
-    for (let i = 0; i < teamCount - 1; i++) {
-      members.push({
-        name: form[`memberName${i}`].value.trim(),
-        mobile: form[`memberMobile${i}`].value.trim(),
-        department: form[`memberDept${i}`].value.trim(),
-      });
-    }
-  }
-
-  const payload = {
-    eventType: selectedEvent,
-    title: form.title?.value.trim() || "",
-    participationType,
-    teamName: participationType === "Team" ? form.teamName.value.trim() : "",
-    leadName: form.fullName.value.trim(),
-    leadEmail: form.email.value.trim().toLowerCase(),
-    leadMobile: form.mobile.value.trim(),
-    college: form.college.value.trim(),
-    department: form.department.value.trim(),
-    members,
-    totalParticipants: participants,
-    feePerPerson: totalAmount,
-    totalAmount,
-    paymentId,
-  };
-
   try {
+    const members = [];
+
+    if (participationType === "Team") {
+      for (let i = 0; i < teamCount - 1; i++) {
+        const name = getValue(form[`memberName${i}`]);
+        const mobile = getValue(form[`memberMobile${i}`]);
+        const dept = getValue(form[`memberDept${i}`]);
+
+        if (name || mobile || dept) {
+          members.push({ name, mobile, department: dept });
+        }
+      }
+    }
+
+    const payload = {
+      eventType: selectedEvent,
+
+      title: getValue(form.title),
+
+      participationType,
+
+      teamName:
+        participationType === "Team"
+          ? getValue(form.teamName)
+          : "",
+
+      leadName: getValue(form.fullName),
+      leadEmail: getValue(form.email).toLowerCase(),
+      leadMobile: getValue(form.mobile),
+
+      college: getValue(form.college),
+      department: getValue(form.department),
+
+      members,
+      totalParticipants: participants,
+      feePerPerson: totalAmount,
+      totalAmount,
+      paymentId,
+    };
+
+    console.log("SAFE PAYLOAD:", payload);
+
     const res = await fetch(SCRIPT_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     });
 
+    if (!res.ok) {
+      throw new Error("HTTP ERROR: " + res.status);
+    }
+
     const data = await res.json();
+
+    console.log("RESPONSE:", data);
 
     if (data.status === "success") {
       setRegistrationId(data.registrationId);
       setSubmitted(true);
     } else if (data.status === "already_registered") {
-      alert("You already registered for this event");
+      alert("Already registered");
     } else {
       alert("Registration failed");
     }
 
   } catch (err) {
-    console.error(err);
-    alert("Server error");
+    console.error("FINAL ERROR:", err);
+    alert("Server unreachable / Data error");
   } finally {
     setLoading(false);
   }
 };
-
   
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -197,11 +219,7 @@ const handleSubmit = async (e) => {
       return;
     }
 
-if (totalAmount === 0) {
-  await submitToBackend("FREE_EVENT", form);
-} else {
-  handlePayment(form);
-}
+await submitToBackend("TEST_PAYMENT", form);
   } catch (err) {
     console.error(err);
     alert("Server unreachable");
