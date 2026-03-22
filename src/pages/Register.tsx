@@ -177,24 +177,6 @@ console.log("CHECK RESPONSE:", data);
 
 };
 
-    const form = e.currentTarget;
-
-    const res = await fetch(
-      `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`
-    );
-
-    const data = await res.json();
-
-    if (data.status === "already_registered") {
-      setEmailError("Email already registered");
-      return;
-    }
-
-   if (totalAmount === 0) {
-  await submitToBackend("FREE_EVENT", form);
-} else {
-  handlePayment(form);
-}
 
   };
 
