@@ -152,8 +152,11 @@ leadEmail: form.email.value.trim().toLowerCase(),
       headers: {
         "Content-Type": "text/plain", // ✅ FIXED (NO CORS)
       },
-    });
+        mode: "no-cors",   // ✅ ADD THIS
 
+    });
+// Assume success
+setSubmitted(true);
     const data = await res.json();
 
     console.log("RESPONSE:", data);
