@@ -178,8 +178,6 @@ console.log("CHECK RESPONSE:", data);
 };
 
 
-  };
-
   if (submitted) {
 
     return (
