@@ -197,8 +197,11 @@ const handleSubmit = async (e) => {
       return;
     }
 
-    await submitToBackend("TEST_PAYMENT", form);
-
+if (totalAmount === 0) {
+  await submitToBackend("FREE_EVENT", form);
+} else {
+  handlePayment(form);
+}
   } catch (err) {
     console.error(err);
     alert("Server unreachable");
