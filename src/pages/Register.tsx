@@ -104,7 +104,7 @@ useEffect(() => {
     rzp.open();
   };
 
-  const submitToBackend = async (paymentId, form) => {
+const submitToBackend = async (paymentId, form) => {
 
   setLoading(true);
 
@@ -113,23 +113,23 @@ useEffect(() => {
   if (participationType === "Team") {
     for (let i = 0; i < teamCount - 1; i++) {
       members.push({
-        name: form[`memberName${i}`].value,
-        mobile: form[`memberMobile${i}`].value,
-        department: form[`memberDept${i}`].value,
+        name: form[`memberName${i}`].value.trim(),
+        mobile: form[`memberMobile${i}`].value.trim(),
+        department: form[`memberDept${i}`].value.trim(),
       });
     }
   }
 
   const payload = {
     eventType: selectedEvent,
-    title: form.title?.value || "",
+    title: form.title?.value.trim() || "",
     participationType,
-    teamName: participationType === "Team" ? form.teamName.value : "",
-    leadName: form.fullName.value,
-    leadEmail: form.email.value,
-    leadMobile: form.mobile.value,
-    college: form.college.value,
-    department: form.department.value,
+    teamName: participationType === "Team" ? form.teamName.value.trim() : "",
+    leadName: form.fullName.value.trim(),
+    leadEmail: form.email.value.trim(),
+    leadMobile: form.mobile.value.trim(),
+    college: form.college.value.trim(),
+    department: form.department.value.trim(),
     members,
     totalParticipants: participants,
     feePerPerson: totalAmount,
@@ -144,37 +144,62 @@ useEffect(() => {
     const res = await fetch(SCRIPT_URL, {
       method: "POST",
       body: JSON.stringify(payload),
-      headers: { "Content-Type": "application/json" }, // ✅ THIS IS IMPORTANT
+      headers: {
+        "Content-Type": "text/plain", // ✅ FIXED (NO CORS)
+      },
     });
 
     const data = await res.json();
-console.log("CHECK RESPONSE:", data);
+
     console.log("RESPONSE:", data);
 
-   if (data.status === "success") {
-  setRegistrationId(data.registrationId);
-  setSubmitted(true);
-} else {
-  console.error("BACKEND ERROR:", data);
-  alert("Error: " + data.status);
-}
+    if (data.status === "success") {
+      setRegistrationId(data.registrationId);
+      setSubmitted(true);
+    } else {
+      alert("Error: " + data.status);
+    }
 
   } catch (err) {
     console.error(err);
-    alert("Server error. Try again.");
+    alert("Server unreachable / deployment issue");
   }
 
   setLoading(false);
 };
- const handleSubmit = async (e: any) => {
+ const handleSubmit = async (e) => {
 
   e.preventDefault();
 
+  if (!agreed) {
+    alert("Accept Terms");
+    return;
+  }
+
   const form = e.currentTarget;
 
-  // 🔥 TEST MODE (NO PAYMENT)
-  await submitToBackend("pay_test123456", form);
+  try {
 
+    const res = await fetch(
+      `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`
+    );
+
+    const data = await res.json();
+
+    if (data.status === "already_registered") {
+      alert("Already registered");
+      return;
+    }
+
+    if (totalAmount === 0) {
+      await submitToBackend("FREE_EVENT", form);
+    } else {
+      handlePayment(form);
+    }
+
+  } catch {
+    alert("Server error");
+  }
 };
 
 
