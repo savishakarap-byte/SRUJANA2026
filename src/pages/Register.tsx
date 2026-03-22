@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby-9VQlEbstvMUnRogVxPeRhZj1qz8bOyWJSL0E30lvy6i3jWJd8Mn1rLUBL5fAVvgfOA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzm04XZuH_AjSWP9FBDSK20ZIf1mmt2ILtWUD6G96Jy73vNTvGwJBiZnGyiPgIL-c7Lkg/exec";
 const RAZORPAY_KEY = "rzp_live_SLGfXBZCuhyTza";
 
 const eventOptions = [
