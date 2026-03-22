@@ -72,6 +72,7 @@ useEffect(() => {
   };
 
   const handlePayment = (form: any) => {
+  setLoading(true); // ✅ ADD THIS
 
     const options = {
       key: RAZORPAY_KEY,
@@ -96,10 +97,14 @@ useEffect(() => {
 
     const rzp = new (window as any).Razorpay(options);
 
-    rzp.on("payment.failed", () => {
-      setPaymentError("Payment failed. Please try again.");
-      setLoading(false);
-    });
+    rzp.on("payment.failed", (response) => {
+  console.error("PAYMENT FAILED:", response);
+  alert("Payment failed. Try again.");
+  setLoading(false);
+});
+    rzp.on("modal.closed", () => {
+  setLoading(false);
+});
 
     rzp.open();
   };
@@ -126,7 +131,7 @@ const submitToBackend = async (paymentId, form) => {
     participationType,
     teamName: participationType === "Team" ? form.teamName.value.trim() : "",
     leadName: form.fullName.value.trim(),
-    leadEmail: form.email.value.trim(),
+leadEmail: form.email.value.trim().toLowerCase(),
     leadMobile: form.mobile.value.trim(),
     college: form.college.value.trim(),
     department: form.department.value.trim(),
@@ -154,12 +159,36 @@ const submitToBackend = async (paymentId, form) => {
     console.log("RESPONSE:", data);
 
     if (data.status === "success") {
-      setRegistrationId(data.registrationId);
+  setRegistrationId(data.registrationId);
+  setSubmitted(true);
+} else {
+      // 🔁 RETRY ONCE
+ try {
+
+    // ⏳ WAIT BEFORE RETRY (IMPORTANT)
+    await new Promise(res => setTimeout(res, 1500));
+
+    // 🔁 RETRY REQUEST
+    const retryRes = await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "text/plain" },
+    });
+
+    const retryData = await retryRes.json();
+
+    if (retryData.status === "success") {
+      setRegistrationId(retryData.registrationId);
       setSubmitted(true);
-    } else {
-      alert("Error: " + data.status);
+      return;
     }
 
+  } catch (err) {
+    console.error("RETRY FAILED:", err);
+  }
+
+  alert("⚠️ Payment done but registration failed. Contact support immediately.");
+}
   } catch (err) {
     console.error(err);
     alert("Server unreachable / deployment issue");
@@ -167,12 +196,19 @@ const submitToBackend = async (paymentId, form) => {
 
   setLoading(false);
 };
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
 
   e.preventDefault();
 
+  if (loading) return;
+
   if (!agreed) {
     alert("Accept Terms");
+    return;
+  }
+
+  if (!selectedEvent) {
+    alert("Select event");
     return;
   }
 
@@ -181,10 +217,18 @@ const submitToBackend = async (paymentId, form) => {
   try {
 
     const res = await fetch(
-      `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`
+      `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "text/plain",
+        },
+      }
     );
 
     const data = await res.json();
+
+    console.log("DUPLICATE CHECK:", data);
 
     if (data.status === "already_registered") {
       alert("Already registered");
@@ -197,11 +241,11 @@ const submitToBackend = async (paymentId, form) => {
       handlePayment(form);
     }
 
-  } catch {
-    alert("Server error");
+  } catch (err) {
+    console.error("GET ERROR:", err);
+    alert("Server unreachable");
   }
 };
-
 
   if (submitted) {
 
@@ -447,10 +491,11 @@ Refund Policy
 </div>
 
 <button
-type="submit"
-className="w-full py-3 bg-indigo-600 text-white rounded-lg">
-
-{totalAmount === 0 ? "Register Free" : `Pay ₹${totalAmount}`}
+  type="submit"
+  disabled={loading}
+  className="w-full py-3 bg-indigo-600 text-white rounded-lg disabled:opacity-50"
+>
+  {loading ? "Processing..." : totalAmount === 0 ? "Register Free" : `Pay ₹${totalAmount}`}
 </button>
 
 </form>
