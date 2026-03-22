@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxzCxbPSlzIXNXDXPPucNK1TzCCR7lTgIZreXAIFssjcI_qWcy99WM3gV8oqoLiZBXV/exec";
+const SCRIPT_URL = "/api/register";
 const RAZORPAY_KEY = "rzp_live_SLGfXBZCuhyTza";
 
 const eventOptions = [
@@ -72,120 +72,118 @@ useEffect(() => {
   };
 
   const handlePayment = (form: any) => {
-  setLoading(true); // ✅ ADD THIS
 
-    const options = {
-      key: RAZORPAY_KEY,
-      amount: Math.round(finalAmount * 100),
-      currency: "INR",
-      name: "SRUJANA 2026",
-      description: selectedEvent,
+  // ✅ Extract values BEFORE Razorpay opens
+  const formData = new FormData(form);
 
-     handler: function (response) {
-  submitToBackend(response.razorpay_payment_id, form);
+  const safeForm = {
+    fullName: formData.get("fullName")?.toString().trim(),
+    email: formData.get("email")?.toString().trim().toLowerCase(),
+    mobile: formData.get("mobile")?.toString().trim(),
+    college: formData.get("college")?.toString().trim(),
+    department: formData.get("department")?.toString().trim(),
+    title: formData.get("title")?.toString().trim() || "",
+    teamName: formData.get("teamName")?.toString().trim() || "",
 
-},
-
-      prefill: {
-        name: form.fullName.value,
-        email: form.email.value,
-        contact: form.mobile.value,
-      },
-
-      theme: { color: "#4f46e5" },
-    };
-
-    const rzp = new (window as any).Razorpay(options);
-
-    rzp.on("payment.failed", (response) => {
-  console.error("PAYMENT FAILED:", response);
-  alert("Payment failed. Try again.");
-  setLoading(false);
-});
-    rzp.on("modal.closed", () => {
-  setLoading(false);
-});
-
-    rzp.open();
+    members: participationType === "Team"
+      ? [...Array(teamCount - 1)].map((_, i) => ({
+          name: formData.get(`memberName${i}`)?.toString().trim(),
+          mobile: formData.get(`memberMobile${i}`)?.toString().trim(),
+          department: formData.get(`memberDept${i}`)?.toString().trim(),
+        }))
+      : []
   };
+
+  setLoading(true);
+
+  const options = {
+    key: RAZORPAY_KEY,
+    amount: Math.round(finalAmount * 100),
+    currency: "INR",
+    name: "SRUJANA 2026",
+    description: selectedEvent,
+
+    handler: function (response) {
+      console.log("PAYMENT SUCCESS:", response);
+
+      submitToBackend(response.razorpay_payment_id, safeForm);
+    },
+
+    prefill: {
+      name: safeForm.fullName,
+      email: safeForm.email,
+      contact: safeForm.mobile,
+    },
+
+    theme: { color: "#4f46e5" },
+  };
+
+  const rzp = new (window as any).Razorpay(options);
+
+  rzp.on("payment.failed", () => {
+    alert("Payment failed");
+    setLoading(false);
+  });
+
+  rzp.on("modal.closed", () => {
+    setLoading(false);
+  });
+
+  rzp.open();
+};
 
 const submitToBackend = async (paymentId, form) => {
 
   setLoading(true);
 
-  const members = [];
-
-  if (participationType === "Team") {
-    for (let i = 0; i < teamCount - 1; i++) {
-      members.push({
-        name: form[`memberName${i}`].value.trim(),
-        mobile: form[`memberMobile${i}`].value.trim(),
-        department: form[`memberDept${i}`].value.trim(),
-      });
-    }
-  }
+  
 
   const payload = {
-    eventType: selectedEvent,
-    title: form.title?.value.trim() || "",
-    participationType,
-    teamName: participationType === "Team" ? form.teamName.value.trim() : "",
-    leadName: form.fullName.value.trim(),
-leadEmail: form.email.value.trim().toLowerCase(),
-    leadMobile: form.mobile.value.trim(),
-    college: form.college.value.trim(),
-    department: form.department.value.trim(),
-    members,
-    totalParticipants: participants,
-    feePerPerson: totalAmount,
-    totalAmount,
-    paymentId,
-  };
+  eventType: selectedEvent,
+  title: form.title || "",
+  participationType,
+  teamName: form.teamName || "",
+  leadName: form.fullName,
+  leadEmail: form.email,
+  leadMobile: form.mobile,
+  college: form.college,
+  department: form.department,
+  members: form.members || [],
+  totalParticipants: participants,
+  feePerPerson: totalAmount,
+  totalAmount,
+  paymentId,
+};
 try {
-  console.log("SENDING:", payload);
-
- await fetch(SCRIPT_URL, {
-  method: "POST",
-  body: JSON.stringify(payload),
-  headers: {
-    "Content-Type": "text/plain",
-  },
-  mode: "no-cors", // ✅ ADD THIS
-});
-
-console.log("REQUEST SENT TO BACKEND");
-
-// ⚠️ we cannot read response → assume success
-setRegistrationId("SRJ26-PENDING");
-setSubmitted(true);
-setLoading(false);
-
-  // 🔁 Retry with proper delay
-  await new Promise(res => setTimeout(res, 3000));
-
-  const retryRes = await fetch(SCRIPT_URL, {
+  const res = await fetch(SCRIPT_URL, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(payload),
-    headers: { "Content-Type": "text/plain" },
   });
 
-  const retryData = await retryRes.json();
+  const data = await res.json();
 
-  if (retryData.status === "success") {
-    setRegistrationId(retryData.registrationId);
+  console.log("RESPONSE:", data);
+
+  if (data.status === "success") {
+    setRegistrationId(data.registrationId);
     setSubmitted(true);
+    setLoading(false);
     return;
+  } else {
+    alert("Registration failed");
   }
-
-  alert("⚠️ Payment done but registration failed. Contact support.");
 
 } catch (err) {
   console.error("FINAL ERROR:", err);
-  alert("Server unreachable / CORS issue");
+  alert("Server error");
 }
 
-  setLoading(false);
-};
+setLoading(false);
+};   // ✅ THIS WAS MISSING
+ 
 const handleSubmit = async (e) => {
 
   e.preventDefault();
@@ -206,21 +204,19 @@ const handleSubmit = async (e) => {
 
   try {
 
-    await fetch(
-  `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`,
-  {
-    method: "GET",
-    mode: "no-cors", // ✅ ADD THIS
-  }
+  const res = await fetch(
+  `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`
 );
 
-// ❌ REMOVE duplicate check (cannot read response)
+const data = await res.json();
 
-    if (totalAmount === 0) {
-      await submitToBackend("FREE_EVENT", form);
-    } else {
-      handlePayment(form);
-    }
+console.log("DUPLICATE CHECK:", data);
+
+if (data.status === "already_registered") {
+  alert("Already registered");
+  return;
+}
+    handlePayment(form);
 
   } catch (err) {
     console.error("GET ERROR:", err);
