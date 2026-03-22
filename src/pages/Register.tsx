@@ -18,7 +18,7 @@ const eventPricing = {
   "Paper presentation": { individual: 200, team: 500 },
   "Poster presentation": { individual: 200, team: 500 },
   "Hackathon": { individual: 200, team: 500 },
-  "Industry institute interaction": { individual: 100 }, // ✅ only individual
+  "Industry institute interaction": { individual: 1 }, // ✅ only individual
 };
 export default function Register() {
 
