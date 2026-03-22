@@ -80,9 +80,10 @@ useEffect(() => {
       name: "SRUJANA 2026",
       description: selectedEvent,
 
-      handler: async function (response: any) {
-        await submitToBackend(response.razorpay_payment_id, form);
-      },
+     handler: async function (response) {
+  alert("Payment successful. Completing registration...");
+  await submitToBackend(response.razorpay_payment_id, form);
+},
 
       prefill: {
         name: form.fullName.value,
@@ -103,69 +104,67 @@ useEffect(() => {
     rzp.open();
   };
 
-  const submitToBackend = async (paymentId: string, form: any) => {
+  const submitToBackend = async (paymentId, form) => {
 
-    setLoading(true);
+  setLoading(true);
 
-    const members: any[] = [];
+  const members = [];
 
-    if (participationType === "Team") {
-
-      for (let i = 0; i < teamCount - 1; i++) {
-
-        members.push({
-          name: form[`memberName${i}`].value,
-          mobile: form[`memberMobile${i}`].value,
-          department: form[`memberDept${i}`].value,
-        });
-
-      }
-
-    }
-
-    const payload = {
-      eventType: selectedEvent,
-      title: form.title?.value || "",
-      participationType,
-      teamName: participationType === "Team" ? form.teamName.value : "",
-      leadName: form.fullName.value,
-      leadEmail: form.email.value,
-      leadMobile: form.mobile.value,
-      college: form.college.value,
-      department: form.department.value,
-      members,
-      totalParticipants: participants,
-      feePerPerson: totalAmount,
-      totalAmount,
-paymentId: totalAmount === 0 ? "FREE_EVENT" : paymentId,
-    };
-
-    try {
-
-      const res = await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "text/plain" },
+  if (participationType === "Team") {
+    for (let i = 0; i < teamCount - 1; i++) {
+      members.push({
+        name: form[`memberName${i}`].value,
+        mobile: form[`memberMobile${i}`].value,
+        department: form[`memberDept${i}`].value,
       });
-
-      const data = await res.json();
-
-      if (data.status === "success") {
-
-        setRegistrationId(data.registrationId);
-        setSubmitted(true);
-
-      }
-
-    } catch {
-
-      alert("Network error.");
-
     }
+  }
 
-    setLoading(false);
+  const payload = {
+    eventType: selectedEvent,
+    title: form.title?.value || "",
+    participationType,
+    teamName: participationType === "Team" ? form.teamName.value : "",
+    leadName: form.fullName.value,
+    leadEmail: form.email.value,
+    leadMobile: form.mobile.value,
+    college: form.college.value,
+    department: form.department.value,
+    members,
+    totalParticipants: participants,
+    feePerPerson: totalAmount,
+    totalAmount,
+    paymentId,
   };
 
+  try {
+
+    console.log("SENDING:", payload);
+
+    const res = await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json" }, // ✅ THIS IS IMPORTANT
+    });
+
+    const data = await res.json();
+console.log("CHECK RESPONSE:", data);
+    console.log("RESPONSE:", data);
+
+    if (data.status === "success") {
+      setRegistrationId(data.registrationId);
+      setSubmitted(true);
+    } else {
+      alert("Registration failed: " + data.status);
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Server error. Try again.");
+  }
+
+  setLoading(false);
+};
   const handleSubmit = async (e: any) => {
 
     e.preventDefault();
