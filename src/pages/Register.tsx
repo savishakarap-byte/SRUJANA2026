@@ -110,7 +110,6 @@ useEffect(() => {
   };
 
 const submitToBackend = async (paymentId, form) => {
-
   setLoading(true);
 
   const members = [];
@@ -131,7 +130,7 @@ const submitToBackend = async (paymentId, form) => {
     participationType,
     teamName: participationType === "Team" ? form.teamName.value.trim() : "",
     leadName: form.fullName.value.trim(),
-leadEmail: form.email.value.trim().toLowerCase(),
+    leadEmail: form.email.value.trim().toLowerCase(),
     leadMobile: form.mobile.value.trim(),
     college: form.college.value.trim(),
     department: form.department.value.trim(),
@@ -141,53 +140,35 @@ leadEmail: form.email.value.trim().toLowerCase(),
     totalAmount,
     paymentId,
   };
-try {
-  console.log("SENDING:", payload);
 
- await fetch(SCRIPT_URL, {
-  method: "POST",
-  body: JSON.stringify(payload),
-  headers: {
-    "Content-Type": "text/plain",
-  },
-  mode: "no-cors", // ✅ ADD THIS
-});
+  try {
+    const res = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-console.log("REQUEST SENT TO BACKEND");
+    const data = await res.json();
 
-// ⚠️ we cannot read response → assume success
-setRegistrationId("SRJ26-PENDING");
-setSubmitted(true);
-setLoading(false);
+    if (data.status === "success") {
+      setRegistrationId(data.registrationId);
+      setSubmitted(true);
+    } else if (data.status === "already_registered") {
+      alert("You already registered for this event");
+    } else {
+      alert("Registration failed");
+    }
 
-  // 🔁 Retry with proper delay
-  await new Promise(res => setTimeout(res, 3000));
-
-  const retryRes = await fetch(SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify(payload),
-    headers: { "Content-Type": "text/plain" },
-  });
-
-  const retryData = await retryRes.json();
-
-  if (retryData.status === "success") {
-    setRegistrationId(retryData.registrationId);
-    setSubmitted(true);
-    return;
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
+  } finally {
+    setLoading(false);
   }
-
-  alert("⚠️ Payment done but registration failed. Contact support.");
-
-} catch (err) {
-  console.error("FINAL ERROR:", err);
-  alert("Server unreachable / CORS issue");
-}
-
-  setLoading(false);
 };
-const handleSubmit = async (e) => {
 
+  
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   if (loading) return;
@@ -205,16 +186,16 @@ const handleSubmit = async (e) => {
   const form = e.currentTarget;
 
   try {
+    const res = await fetch(
+      `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`
+    );
 
-    await fetch(
-  `${SCRIPT_URL}?email=${encodeURIComponent(form.email.value)}&eventType=${encodeURIComponent(selectedEvent)}`,
-  {
-    method: "GET",
-    mode: "no-cors", // ✅ ADD THIS
-  }
-);
+    const data = await res.json();
 
-// ❌ REMOVE duplicate check (cannot read response)
+    if (data.status === "already_registered") {
+      alert("Already registered");
+      return;
+    }
 
     if (totalAmount === 0) {
       await submitToBackend("FREE_EVENT", form);
@@ -223,11 +204,10 @@ const handleSubmit = async (e) => {
     }
 
   } catch (err) {
-    console.error("GET ERROR:", err);
+    console.error(err);
     alert("Server unreachable");
   }
 };
-
   if (submitted) {
 
     return (
