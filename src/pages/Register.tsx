@@ -151,12 +151,13 @@ useEffect(() => {
 console.log("CHECK RESPONSE:", data);
     console.log("RESPONSE:", data);
 
-    if (data.status === "success") {
-      setRegistrationId(data.registrationId);
-      setSubmitted(true);
-    } else {
-      alert("Registration failed: " + data.status);
-    }
+   if (data.status === "success") {
+  setRegistrationId(data.registrationId);
+  setSubmitted(true);
+} else {
+  console.error("BACKEND ERROR:", data);
+  alert("Error: " + data.status);
+}
 
   } catch (err) {
     console.error(err);
@@ -165,14 +166,16 @@ console.log("CHECK RESPONSE:", data);
 
   setLoading(false);
 };
-  const handleSubmit = async (e: any) => {
+ const handleSubmit = async (e: any) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!agreed) {
-      alert("Accept Terms");
-      return;
-    }
+  const form = e.currentTarget;
+
+  // 🔥 TEST MODE (NO PAYMENT)
+  await submitToBackend("pay_test123456", form);
+
+};
 
     const form = e.currentTarget;
 
