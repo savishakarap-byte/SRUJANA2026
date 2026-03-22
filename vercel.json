@@ -1,8 +1,13 @@
 {
-    "rewrites": [
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
         {
-            "source": "/(.*)",
-            "destination": "/"
+          "key": "Content-Security-Policy",
+          "value": "connect-src 'self' https://script.google.com https://script.googleusercontent.com;"
         }
-    ]
+      ]
+    }
+  ]
 }
