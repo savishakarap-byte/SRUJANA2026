@@ -197,11 +197,7 @@ const handleSubmit = async (e) => {
       return;
     }
 
-    if (totalAmount === 0) {
-      await submitToBackend("FREE_EVENT", form);
-    } else {
-      handlePayment(form);
-    }
+    await submitToBackend("TEST_PAYMENT", form);
 
   } catch (err) {
     console.error(err);
