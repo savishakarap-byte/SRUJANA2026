@@ -81,9 +81,9 @@ useEffect(() => {
       name: "SRUJANA 2026",
       description: selectedEvent,
 
-     handler: async function (response) {
-  alert("Payment successful. Completing registration...");
-  await submitToBackend(response.razorpay_payment_id, form);
+     handler: function (response) {
+  submitToBackend(response.razorpay_payment_id, form);
+}
 },
 
       prefill: {
@@ -141,61 +141,59 @@ leadEmail: form.email.value.trim().toLowerCase(),
     totalAmount,
     paymentId,
   };
+try {
+  console.log("SENDING:", payload);
+
+  const res = await fetch(SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "text/plain",
+    },
+  });
+
+  console.log("FETCH STATUS:", res.status);
+
+  let data;
 
   try {
-
-    console.log("SENDING:", payload);
-
-    const res = await fetch(SCRIPT_URL, {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-Type": "text/plain", // ✅ FIXED (NO CORS)
-      },
-        mode: "no-cors",   // ✅ ADD THIS
-
-    });
-// Assume success
-setSubmitted(true);
-    const data = await res.json();
-
-    console.log("RESPONSE:", data);
-
-    if (data.status === "success") {
-  setRegistrationId(data.registrationId);
-  setSubmitted(true);
-} else {
-      // 🔁 RETRY ONCE
- try {
-
-    // ⏳ WAIT BEFORE RETRY (IMPORTANT)
-    await new Promise(res => setTimeout(res, 1500));
-
-    // 🔁 RETRY REQUEST
-    const retryRes = await fetch(SCRIPT_URL, {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "text/plain" },
-    });
-
-    const retryData = await retryRes.json();
-
-    if (retryData.status === "success") {
-      setRegistrationId(retryData.registrationId);
-      setSubmitted(true);
-      return;
-    }
-
-  } catch (err) {
-    console.error("RETRY FAILED:", err);
+    data = await res.json();
+  } catch (e) {
+    console.error("INVALID JSON RESPONSE", e);
+    throw new Error("Bad backend response");
   }
 
-  alert("⚠️ Payment done but registration failed. Contact support immediately.");
+  console.log("RESPONSE:", data);
+
+  if (data.status === "success") {
+    setRegistrationId(data.registrationId);
+    setSubmitted(true);
+    return;
+  }
+
+  // 🔁 Retry with proper delay
+  await new Promise(res => setTimeout(res, 3000));
+
+  const retryRes = await fetch(SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: { "Content-Type": "text/plain" },
+  });
+
+  const retryData = await retryRes.json();
+
+  if (retryData.status === "success") {
+    setRegistrationId(retryData.registrationId);
+    setSubmitted(true);
+    return;
+  }
+
+  alert("⚠️ Payment done but registration failed. Contact support.");
+
+} catch (err) {
+  console.error("FINAL ERROR:", err);
+  alert("Server unreachable / CORS issue");
 }
-  } catch (err) {
-    console.error(err);
-    alert("Server unreachable / deployment issue");
-  }
 
   setLoading(false);
 };
