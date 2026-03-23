@@ -160,7 +160,11 @@ const submitToBackend = async (paymentId, form) => {
     const formData = new FormData();
 
 Object.keys(payload).forEach(key => {
-  formData.append(key, JSON.stringify(payload[key]));
+  if (key === "members") {
+    formData.append(key, JSON.stringify(payload[key])); // only array stringify
+  } else {
+    formData.append(key, payload[key]); // normal values
+  }
 });
 
 const res = await fetch(SCRIPT_URL, {
