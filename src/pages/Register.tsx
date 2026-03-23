@@ -81,9 +81,21 @@ useEffect(() => {
       name: "SRUJANA 2026",
       description: selectedEvent,
 
-     handler: function (response) {
-  submitToBackend(response.razorpay_payment_id, form);
+    handler: async function (response) {
+  console.log("PAYMENT SUCCESS:", response);
 
+  try {
+    await submitToBackend(response.razorpay_payment_id, form);
+  } catch (err) {
+    console.error(err);
+    setLoading(false); // ✅ ADD THIS
+
+    alert(
+      "Payment successful but registration failed.\n" +
+      "Send this Payment ID to support:\n\n" +
+      response.razorpay_payment_id
+    );
+  }
 },
 
       prefill: {
@@ -226,8 +238,11 @@ const handleSubmit = async (e) => {
       return;
     }
 
-await submitToBackend("TEST_PAYMENT", form);
-  } catch (err) {
+if (totalAmount === 0) {
+  await submitToBackend("FREE_EVENT", form);
+} else {
+  handlePayment(form);
+}  } catch (err) {
     console.error(err);
     alert("Server unreachable");
   }
