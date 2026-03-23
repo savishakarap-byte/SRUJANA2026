@@ -157,13 +157,16 @@ const submitToBackend = async (paymentId, form) => {
 
     console.log("SAFE PAYLOAD:", payload);
 
-    const res = await fetch(SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    const formData = new FormData();
+
+Object.keys(payload).forEach(key => {
+  formData.append(key, JSON.stringify(payload[key]));
+});
+
+const res = await fetch(SCRIPT_URL, {
+  method: "POST",
+  body: formData,
+});
 
     if (!res.ok) {
       throw new Error("HTTP ERROR: " + res.status);
