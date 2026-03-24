@@ -33,12 +33,7 @@ export default function OurTeam() {
       college: "Vikas Group of Institutions, Vijayawada",
       photo: "/team/kishorereddy.jpg"
     },
-    {
-      name: "Dr. G. Sivanatha Reddy",
-      designation: "Asst. Prof., Dept. of Civil Engineering",
-      college: "JNTUA College of Engineering, Pulivendula",
-      photo: "/team/sivanathareddy.jpg"
-    },
+    
     {
       name: "Shri V. Ramanjaneyulu",
       designation: "Asst. Prof., Dept. of Chemical Engineering",
