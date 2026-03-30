@@ -103,7 +103,12 @@ const Index = () => {
         >
           Register Now
         </Link>
-
+ <Link
+          to="/problems"
+          className="px-8 py-3 rounded-lg font-semibold bg-primary text-primary-foreground glow-button text-base"
+        >
+Hackathon Problem Statments
+ </Link>
         <a
           href="#about"
           className="px-8 py-3 rounded-lg font-semibold border border-border text-foreground hover:bg-secondary transition-colors duration-200 text-base"
