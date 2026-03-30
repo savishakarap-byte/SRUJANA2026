@@ -41,6 +41,7 @@ const Index = () => {
   
 <p className="text-2xl font-semibold text-red-500 mt-2">
   “Registrations close by April 1, 2026, 8:00 PM”
+  All event registrations are now closed. Only the Working Model Exhibition registration remains open until the above-mentioned deadline.
 </p>
           <p className="text-lg text-gray-700">
             Prize Pool Revised to
