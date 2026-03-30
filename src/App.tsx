@@ -15,6 +15,8 @@ import Terms from "./pages/Terms";
 import Refund from "./pages/Refund";
 import NotFound from "./pages/NotFound";
 import Maintenance from "./pages/Maintenance";
+import ProblemStatements from "./pages/ProblemStatements";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -33,6 +35,7 @@ const App = () => (
             <Route path="/team" element={<OurTeam />} />
           <Route path="/event/:slug" element={<EventDetails />} />
           <Route path="/terms-and-conditions" element={<Terms />} />
+          <Route path="/problems" element={<ProblemStatements />} />
 <Route path="/refund-policy" element={<Refund />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
