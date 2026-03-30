@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxzCxbPSlzIXNXDXPPucNK1TzCCR7lTgIZreXAIFssjcI_qWcy99WM3gV8oqoLiZBXV/exec";
 const RAZORPAY_KEY = "rzp_live_SLGfXBZCuhyTza";
-
+const DEADLINE = new Date("2026-04-01T20:00:00");
 const eventOptions = [
   "Working model exhibition",
   "Paper presentation",
@@ -31,6 +31,7 @@ export default function Register() {
   const [agreed, setAgreed] = useState(false);
   const [paymentError, setPaymentError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [timeLeft, setTimeLeft] = useState("");
 const isOnlyIndividualEvent =
   selectedEvent === "Industry institute interaction";
   
@@ -39,7 +40,26 @@ useEffect(() => {
     setParticipationType("Individual");
   }
 }, [selectedEvent]);
+useEffect(() => {
+  const interval = setInterval(() => {
+    const now = new Date();
+    const diff = DEADLINE - now;
 
+    if (diff <= 0) {
+      setTimeLeft("Registrations Closed");
+      clearInterval(interval);
+      return;
+    }
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
   const participants =
     participationType === "Individual" ? 1 : teamCount;
 
@@ -357,7 +377,10 @@ PRIZE POOL REVISED TO 2LAKH </h2>
 <h2 className="text-2xl font-bold mb-6 text-gray-900">
 SRUJANA 2026 Registration
 </h2>
-
+<div className="mb-4 text-center">
+  <p className="text-sm text-gray-600">Registration closes in</p>
+  <p className="text-xl font-bold text-red-600">{timeLeft}</p>
+</div>
 <form onSubmit={handleSubmit} className="space-y-4">
 
 <select
