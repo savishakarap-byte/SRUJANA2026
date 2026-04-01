@@ -358,7 +358,8 @@ The registration fee includes event entry, food and accommodation for three days
 
   <h2 className="text-2xl font-bold mb-4 text-orange-600">
 PRIZE POOL REVISED TO 2LAKH </h2>
-
+ <h2 className="text-2xl font-bold mb-4 text-orange-600">
+All event registrations are closed except for the Working Model Exhibition.  </h2>
 <div className="md:hidden mt-6 text-center text-indigo-600 font-medium">
 ⬇ Scroll down to registration
 </div>
