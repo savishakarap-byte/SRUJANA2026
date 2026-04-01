@@ -40,7 +40,7 @@ const Index = () => {
 </h2>
   
 <p className="text-2xl font-semibold text-red-500 mt-2">
-  “Registrations close by April 1, 2026, 8:00 PM”
+  “Registrations closed for all events. Working Model Exhibition only will close by April 1, 2026, 8:00 PM”
 </p>
           <p className="text-lg text-gray-700">
             Prize Pool Revised to
