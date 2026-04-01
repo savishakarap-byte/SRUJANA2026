@@ -7,18 +7,10 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxzCxbPSlzIXNXDXPPuc
 const RAZORPAY_KEY = "rzp_live_SLGfXBZCuhyTza";
 const DEADLINE = new Date("2026-04-01T20:00:00");
 const eventOptions = [
-  "Working model exhibition",
-  "Paper presentation",
-  "Poster presentation",
-  "Hackathon",
-  "Industry institute interaction",
+  "Working model exhibition"
 ];
 const eventPricing = {
   "Working model exhibition": { individual: 200, team: 500 },
-  "Paper presentation": { individual: 200, team: 500 },
-  "Poster presentation": { individual: 200, team: 500 },
-  "Hackathon": { individual: 200, team: 500 },
-  "Industry institute interaction": { individual: 100 }, // ✅ only individual
 };
 export default function Register() {
 
@@ -40,6 +32,9 @@ useEffect(() => {
     setParticipationType("Individual");
   }
 }, [selectedEvent]);
+  useEffect(() => {
+  setSelectedEvent("Working model exhibition");
+}, []);
 useEffect(() => {
   const interval = setInterval(() => {
     const now = new Date();
@@ -383,21 +378,9 @@ SRUJANA 2026 Registration
 </div>
 <form onSubmit={handleSubmit} className="space-y-4">
 
-<select
-required
-value={selectedEvent}
-onChange={(e)=>setSelectedEvent(e.target.value)}
-className="input-modern"
->
-
-<option value="">Select Event</option>
-
-{eventOptions.map(e=>(
-<option key={e}>{e}</option>
-))}
-
+<select value="Working model exhibition" disabled className="input-modern">
+  <option>Working model exhibition</option>
 </select>
-
 <div className="flex gap-3">
 
 <button
